@@ -1,0 +1,1143 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사주팔자 단계별 풀이 — 임수정 戊戌 일주</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@400;500;600;700&display=swap');
+
+  :root {
+    --bg: #f7f5f0;
+    --card: #ffffff;
+    --border: #e6e2d8;
+    --border2: #cdc8ba;
+    --text: #1c1a14;
+    --text2: #5c5848;
+    --text3: #9c9888;
+    --amber: #b07820;
+    --amber-dark: #7a5010;
+    --amber-bg: #fdf3dc;
+    --amber-light: #fef8ec;
+    --teal: #0d6b52;
+    --teal-mid: #1a9a72;
+    --teal-bg: #e0f5ec;
+    --red: #a03018;
+    --red-dark: #782210;
+    --red-bg: #faeae4;
+    --gray-bg: #f0ede4;
+    --gold: #c89820;
+    --gold-bg: #fdf6e0;
+    --radius: 12px;
+    --radius-sm: 7px;
+    --shadow: 0 2px 8px rgba(0,0,0,.07);
+    --shadow-lg: 0 4px 20px rgba(0,0,0,.1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .wrap { max-width: 840px; margin: 0 auto; padding: 2rem 1rem 5rem; }
+
+  header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1.8rem 1.5rem 1.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '土';
+    position: absolute;
+    right: -10px; top: -10px;
+    font-size: 110px;
+    font-family: 'Noto Serif KR', serif;
+    font-weight: 900;
+    color: rgba(176,120,32,.06);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .hdr-badge {
+    display: inline-block;
+    background: var(--amber-bg);
+    color: var(--amber-dark);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    padding: 3px 12px;
+    border-radius: 20px;
+    border: 1px solid #e8c870;
+    margin-bottom: 10px;
+  }
+  header h1 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  header p { color: var(--text2); font-size: 13px; }
+
+  /* ── PILLARS ── */
+  .pillars-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 10px;
+    margin-top: 1.8rem;
+  }
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+  .pillar {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 8px 12px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    transition: transform .18s, border-color .18s, box-shadow .18s;
+  }
+  .pillar:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .pillar.active {
+    border-color: var(--amber);
+    border-width: 2px;
+    box-shadow: 0 0 0 3px var(--amber-bg), var(--shadow);
+  }
+  .pillar.active2 {
+    border-color: var(--teal);
+    border-width: 2px;
+    box-shadow: 0 0 0 3px var(--teal-bg), var(--shadow);
+  }
+  .p-badge {
+    position: absolute;
+    top: -10px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    padding: 2px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+    font-weight: 700;
+  }
+  .badge-me { background: #fce8b0; color: var(--amber-dark); border: 1px solid #e8c060; }
+  .badge-key { background: #c0edd8; color: var(--teal); border: 1px solid #70c8a0; }
+  .badge-n { background: var(--gray-bg); color: var(--text3); border: 1px solid var(--border2); }
+  .p-label { font-size: 10px; color: var(--text3); margin-bottom: 4px; }
+  .p-kan {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin: 2px 0;
+    color: var(--text);
+  }
+  .p-div { height: 1px; background: var(--border); margin: 5px 10px; }
+  .p-ji {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text2);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .p-role { font-size: 10px; color: var(--text3); }
+
+  /* pillar earth color */
+  .pillar.active .p-kan { color: var(--amber-dark); }
+
+  /* ── PROGRESS ── */
+  .progress {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-bottom: 1.2rem;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--amber), var(--gold));
+    border-radius: 2px;
+    transition: width .35s ease;
+  }
+
+  /* ── STEP NAV ── */
+  .step-nav {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    gap: 0;
+  }
+  .step-dot {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+    border: 1.5px solid var(--border2);
+    background: var(--bg);
+    color: var(--text3);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all .2s;
+  }
+  .step-dot:hover { border-color: var(--amber); color: var(--amber); }
+  .step-dot.done { background: var(--teal); color: #fff; border-color: var(--teal); }
+  .step-dot.active { background: var(--amber-dark); color: #fff; border-color: var(--amber-dark); }
+  .step-dot.break-dot { background: var(--amber-bg); color: var(--amber-dark); border-color: var(--amber); }
+  .step-dot.break-dot.active { background: var(--amber); color: #fff; }
+  .step-line { flex: 1; height: 1.5px; background: var(--border); }
+  .step-line.done { background: var(--teal); }
+
+  /* ── PANEL ── */
+  .panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.8rem;
+    box-shadow: var(--shadow);
+  }
+  .panel-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 1.4rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .panel-num {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--amber-bg);
+    color: var(--amber-dark);
+    font-size: 15px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid #e8c070;
+  }
+  .panel-num.brk { background: var(--amber-bg); color: var(--amber-dark); }
+  .panel-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .panel-sub { font-size: 12px; color: var(--text2); margin-top: 4px; }
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 9px;
+    border-radius: 20px;
+    margin-left: 8px;
+    font-weight: 700;
+    vertical-align: middle;
+  }
+  .tag-basic { background: var(--teal-bg); color: var(--teal); }
+  .tag-mid { background: var(--amber-bg); color: var(--amber-dark); }
+  .tag-adv { background: var(--red-bg); color: var(--red-dark); }
+  .tag-brk { background: var(--gold-bg); color: var(--gold); }
+
+  /* ── CONTENT ELEMENTS ── */
+  .why {
+    background: var(--amber-bg);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 13px 16px;
+    margin: 12px 0;
+    font-size: 13px;
+    color: var(--amber-dark);
+    line-height: 1.8;
+  }
+  .why strong { color: var(--amber-dark); }
+
+  .ins {
+    background: var(--bg);
+    border-left: 3px solid var(--border2);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 11px 15px;
+    font-size: 13px;
+    color: var(--text2);
+    margin: 10px 0;
+    line-height: 1.8;
+  }
+  .ins strong { color: var(--text); }
+  .ins-green { border-left-color: var(--teal); background: var(--teal-bg); color: #0a5040; }
+  .ins-amber { border-left-color: var(--amber); background: var(--amber-light); }
+  .ins-red { border-left-color: var(--red); background: var(--red-bg); color: var(--red-dark); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 12px 0; }
+  th {
+    background: var(--gray-bg);
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 700;
+    color: var(--text2);
+    border-bottom: 1.5px solid var(--border2);
+    font-size: 11px;
+  }
+  td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { font-weight: 600; color: var(--text2); }
+  tr.hl { background: var(--amber-light); }
+  tr.hl td, tr.hl td:first-child { color: var(--amber-dark); }
+  tr.hl-g { background: var(--teal-bg); }
+  tr.hl-g td, tr.hl-g td:first-child { color: var(--teal); }
+  tr.hl-y { background: var(--gold-bg); }
+  tr.hl-y td, tr.hl-y td:first-child { color: #8a6010; }
+  tr.hl-r { background: var(--red-bg); }
+  tr.hl-r td, tr.hl-r td:first-child { color: var(--red-dark); }
+
+  .flow { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin: 10px 0; }
+  .chip {
+    padding: 5px 11px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text2);
+    white-space: nowrap;
+  }
+  .chip-a { background: var(--amber-bg); border-color: #e8c070; color: var(--amber-dark); }
+  .chip-g { background: var(--teal-bg); border-color: #70c8a0; color: var(--teal); }
+  .chip-r { background: var(--red-bg); border-color: #f0a080; color: var(--red-dark); }
+  .chip-y { background: var(--gold-bg); border-color: #d8b050; color: #7a5010; }
+  .arrow { font-size: 14px; color: var(--text3); }
+
+  .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
+  .gi {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 11px 13px;
+    background: var(--card);
+  }
+  .gi-title { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .gi-body { font-size: 11px; color: var(--text2); line-height: 1.7; }
+
+  .steps-flow { display: flex; flex-direction: column; gap: 10px; margin: 12px 0; }
+  .step-item {
+    display: flex; gap: 13px;
+    padding: 13px 15px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--card);
+  }
+  .step-item.act { border-color: #e8c070; background: var(--amber-light); }
+  .step-item.act2 { border-color: #70c8a0; background: var(--teal-bg); }
+  .step-n {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--amber-bg);
+    color: var(--amber-dark);
+    font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid #e8c070;
+  }
+  .step-n.g { background: var(--teal-bg); color: var(--teal); border-color: #70c8a0; }
+  .step-t { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+  .step-d { font-size: 11px; color: var(--text2); line-height: 1.7; }
+
+  .brk-box {
+    background: var(--gray-bg);
+    border-radius: var(--radius-sm);
+    padding: 15px;
+    margin: 12px 0;
+    border: 1px solid var(--border);
+  }
+  .brk-title { font-size: 13px; font-weight: 700; color: var(--amber-dark); margin-bottom: 10px; }
+  .cycle-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin: 8px 0; }
+  .cyc {
+    padding: 5px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 12px; font-weight: 700;
+    text-align: center; min-width: 54px;
+    font-family: 'Noto Serif KR', serif;
+  }
+  .cyc-wood { background: #eaf3de; color: #285010; }
+  .cyc-fire { background: var(--red-bg); color: var(--red-dark); }
+  .cyc-earth { background: var(--amber-bg); color: var(--amber-dark); }
+  .cyc-metal { background: var(--gray-bg); color: #444440; border: 1px solid #ccc; }
+  .cyc-water { background: #e4f0fc; color: #0c4480; }
+  .cyc-arr { font-size: 13px; color: var(--text3); }
+
+  /* Matrix table */
+  .mx th.me { background: var(--amber-bg); color: var(--amber-dark); }
+  .mx td.hap { background: var(--teal-bg); color: var(--teal); font-weight: 700; font-size: 11px; }
+  .mx td.chung { background: var(--red-bg); color: var(--red-dark); font-weight: 700; font-size: 11px; }
+  .mx td.hyung { background: #fce8f0; color: #a0186c; font-weight: 700; font-size: 11px; }
+  .mx td.none { color: var(--text3); font-size: 11px; text-align: center; }
+  .mx td.self { background: var(--gray-bg); color: var(--text3); text-align: center; font-size: 11px; }
+
+  .nav-row {
+    display: flex; gap: 10px; justify-content: flex-end;
+    margin-top: 1.2rem; padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+  .btn {
+    padding: 9px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 13px; font-weight: 600;
+    cursor: pointer;
+    border: 1.5px solid var(--border2);
+    background: var(--bg);
+    color: var(--text);
+    transition: all .15s;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .btn:hover { border-color: var(--amber); color: var(--amber); background: var(--amber-bg); }
+  .btn:disabled { opacity: .35; cursor: default; pointer-events: none; }
+  .btn-primary { background: var(--amber-dark); color: #fff; border-color: var(--amber-dark); }
+  .btn-primary:hover { background: #5c3c08; color: #fff; border-color: #5c3c08; }
+
+  .sep { height: 1px; background: var(--border); margin: 14px 0; }
+
+  @media (max-width: 560px) {
+    .pillars { gap: 6px; }
+    .p-kan, .p-ji { font-size: 22px; }
+    .g2 { grid-template-columns: 1fr; }
+    .panel { padding: 1.1rem; }
+    .mx { font-size: 10px; }
+    .mx th, .mx td { padding: 4px 5px; }
+    .step-dot { width: 26px; height: 26px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="hdr-badge">女命 · 사주팔자 단계별 풀이</div>
+    <h1>임수정 — 戊戌 일주</h1>
+    <p>2007년 1월 4일 10시 30분생 · 일간을 중심으로 월지 → 일지 → 시주 → 년주 순서로 읽는 완전 해설</p>
+  </header>
+
+  <div class="pillars-label">사주 사기둥 — 시주·일주·월주·년주</div>
+  <div class="pillars" id="pillars">
+    <div class="pillar" data-idx="3" onclick="selP(3)">
+      <div class="p-badge badge-n">시주</div>
+      <div class="p-label">時</div>
+      <div class="p-kan">丁</div>
+      <div class="p-div"></div>
+      <div class="p-ji">巳</div>
+      <div class="p-role">자식·노년·결실</div>
+    </div>
+    <div class="pillar active" data-idx="2" onclick="selP(2)">
+      <div class="p-badge badge-me">일주 ★</div>
+      <div class="p-label">日</div>
+      <div class="p-kan">戊</div>
+      <div class="p-div"></div>
+      <div class="p-ji">戌</div>
+      <div class="p-role">나·배우자·중년</div>
+    </div>
+    <div class="pillar" data-idx="1" onclick="selP(1)">
+      <div class="p-badge badge-key">월주</div>
+      <div class="p-label">月</div>
+      <div class="p-kan">庚</div>
+      <div class="p-div"></div>
+      <div class="p-ji" style="color:var(--teal)">子</div>
+      <div class="p-role">직업·사회·청년기</div>
+    </div>
+    <div class="pillar" data-idx="0" onclick="selP(0)">
+      <div class="p-badge badge-n">년주</div>
+      <div class="p-label">年</div>
+      <div class="p-kan">丙</div>
+      <div class="p-div"></div>
+      <div class="p-ji">戌</div>
+      <div class="p-role">조상·어린시절·뿌리</div>
+    </div>
+  </div>
+
+  <div class="progress"><div class="progress-fill" id="pbar" style="width:12.5%"></div></div>
+  <div class="step-nav" id="snav"></div>
+  <div class="panel" id="panel"></div>
+
+</div>
+
+<script>
+const STEPS = [
+  /* ─────────── 1단계 ─────────── */
+  {
+    title: "1단계 — 일간(日干) 확인",
+    sub: "나는 무엇인가? 60갑자에서 어떻게 찾는가?",
+    tag: "basic", focus: [2], isBreak: false,
+    html: `
+<div class="why"><strong>왜 일간이 기준점인가?</strong><br>
+사주 8글자 중 '나 자신'은 일간(日干) 단 하나입니다. 나머지 7글자는 모두 "이 일간과 어떤 오행 관계인가"로 해석됩니다. 같은 丁(정화)이라도 내 일간이 土이면 식상(재능), 木이면 정인(귀인)이 됩니다.</div>
+<div class="ins ins-amber"><strong>60갑자에서 일간 찾는 법:</strong> 천간 10개 × 지지 12개를 순서대로 짝지으면 60쌍이 생깁니다. 甲子(1번) → 乙丑(2번) → … → 戊戌(35번) → … → 癸亥(60번). 만세력 앱에 생년월일시를 입력하면 태어난 날이 자동 계산되어 일주(일간+일지)가 나옵니다.<br><br>
+<strong>戊戌이 35번째인 이유:</strong> 천간에서 戊는 5번째, 지지에서 戌는 11번째. 甲子(1번)에서 출발해 짝을 맞추면 → 31번(甲辰)부터 세어 戊辰=5번, 戊申=17번, 戊子=25번, 戊辰=35번? 정확히는 甲子를 1로 잡으면 <strong>35번 戊戌</strong>에 도달합니다. (천간 5×7사이클 원리)</div>
+<table>
+<thead><tr><th>일간</th><th>오행</th><th>음양</th><th>상징</th><th>핵심 기질</th></tr></thead>
+<tbody>
+<tr><td>甲 갑</td><td>木</td><td>양</td><td>큰 나무</td><td>추진력·리더십</td></tr>
+<tr><td>乙 을</td><td>木</td><td>음</td><td>덩굴·풀</td><td>유연·적응력</td></tr>
+<tr><td>丙 병</td><td>火</td><td>양</td><td>태양</td><td>열정·외향성</td></tr>
+<tr><td>丁 정</td><td>Fire</td><td>음</td><td>촛불</td><td>섬세·집중력</td></tr>
+<tr class="hl"><td>戊 무 ★</td><td>土</td><td>양</td><td>큰 산·댐</td><td>안정·포용·지도력</td></tr>
+<tr><td>己 기</td><td>土</td><td>음</td><td>논밭</td><td>실용·세밀</td></tr>
+<tr><td>庚 경</td><td>金</td><td>양</td><td>강한 쇠</td><td>의지·결단</td></tr>
+<tr><td>辛 신</td><td>金</td><td>음</td><td>보석·칼</td><td>완성미·예민함</td></tr>
+<tr><td>壬 임</td><td>水</td><td>양</td><td>큰 바다</td><td>지혜·포용</td></tr>
+<tr><td>癸 계</td><td>Water</td><td>음</td><td>빗물·이슬</td><td>직관·감수성</td></tr>
+</tbody></table>
+<div class="ins ins-green"><strong>예시 적용:</strong> 태어난 날이 戊戌(35번째)이므로 일간 = <strong>戊(무토)</strong>. "큰 산·댐처럼 포용력이 넓고 안정감을 주는 양토(陽土)"가 기본 기질입니다. 戊戌 일주는 '산 위의 산' 형상으로, 고집과 뚝심이 강하고 한번 마음먹으면 끝까지 밀고 가는 지도자형 기질을 가집니다. 여명(女命)에서는 자기 주관이 뚜렷하고 기개가 있다고 봅니다.</div>`
+  },
+
+  /* ─────────── 2단계 ─────────── */
+  {
+    title: "2단계 — 월지(月支) 대조",
+    sub: "어느 계절에 태어났는가? 절기 기준으로 득령을 판단한다",
+    tag: "basic", focus: [1], isBreak: false,
+    html: `
+<div class="why"><strong>왜 풀이 순서 2번이 월지인가?</strong><br>
+월지는 8글자 중 가장 강한 에너지입니다. 계절의 기운이 한 달 내내 지속되기 때문입니다. 신강·신약 판단의 약 50%를 월지 하나가 결정하며, "내가 어떤 환경에서 자랐는가"를 뜻합니다.</div>
+<div class="ins ins-amber"><strong>절기(節氣) 기준입니다.</strong> 음력도 양력도 아닌 태양의 위치(절기)를 씁니다. 만세력 앱이 자동 계산해 줍니다.<br><br>
+<strong>이 사주의 월지는 子(자수)입니다.</strong> 2007년 1월 4일은 절기상 소한(小寒) 전날로, 대설(大雪)~소한 사이인 子월(겨울)에 해당합니다. 겨울 한복판의 子월은 水의 기운이 가장 강한 시기입니다.</div>
+<div class="ins"><strong>득령(得令)이란?</strong> 일간이 태어난 계절(월지)로부터 힘을 받는 상태.<br>
+· <strong>득령</strong> → 자신감·추진력·체력이 강함<br>
+· <strong>실령</strong> → 환경의 영향을 더 받음, 유연하고 협력을 잘함<br>
+득령이 없다고 나쁜 사주가 아닙니다. 실령 사주는 타인과의 조화가 뛰어납니다.</div>
+<table>
+<thead><tr><th>월지</th><th>계절</th><th>오행</th><th>戊土 득령 여부</th><th>이유</th></tr></thead>
+<tbody>
+<tr><td>寅·卯 (봄)</td><td>봄</td><td>木</td><td>실령</td><td>木剋土 → 힘 소모</td></tr>
+<tr><td>辰 (환절기)</td><td>환절기</td><td>土</td><td>득령 ◎</td><td>같은 오행, 환절기 토</td></tr>
+<tr><td>巳·午 (여름)</td><td>여름</td><td>火</td><td>득령 ◎</td><td>火生土 → 가장 강한 계절</td></tr>
+<tr><td>未 (환절기)</td><td>환절기</td><td>土</td><td>득령 ◎</td><td>같은 오행, 환절기 토</td></tr>
+<tr><td>申·酉 (가을)</td><td>가을</td><td>金</td><td>약한 실령</td><td>土生金 → 힘 빠져나감</td></tr>
+<tr><td>戌 (환절기)</td><td>환절기</td><td>土</td><td>득령 ◎</td><td>같은 오행, 환절기 토</td></tr>
+<tr class="hl-r"><td>亥·子 (겨울) ★</td><td>겨울</td><td>水</td><td>실령 ✕</td><td>土剋水이나 겨울 水가 너무 강해 힘 소모</td></tr>
+<tr><td>丑 (환절기)</td><td>환절기</td><td>土</td><td>득령 ◎</td><td>같은 오행, 환절기 토</td></tr>
+</tbody></table>
+<div class="ins ins-red"><strong>예시 적용:</strong> 월지 <strong>子(자수)</strong> = 겨울 한복판(대설~소한). 戊토에게 水는 재성(내가 다스려야 할 것)이지만, 子월의 水 기운은 너무 강해 오히려 土가 억눌립니다 → <strong>실령(失令)</strong>. 이 사주는 환경이 나를 다소 압도하는 구조로, 유연하고 협력적인 면이 발달합니다.</div>`
+  },
+
+  /* ─────────── 쉬어가기 ─────────── */
+  {
+    title: "☕ 쉬어가기 — 오행·음양·절기 원리",
+    sub: "이해가 되어야 지식이 됩니다. 이미 아는 분은 다음으로!",
+    tag: "brk", focus: [], isBreak: true,
+    html: `
+<div class="ins ins-amber"><strong>왜 이 내용이 필요한가?</strong> 3단계부터는 '오행끼리 어떻게 상호작용하는가'를 계속 씁니다. 원리를 이해하면 나머지가 외우지 않아도 풀립니다.</div>
+<div class="brk-box">
+  <div class="brk-title">① 오행(五行)의 상생·상극 순환</div>
+  <div class="cycle-row">
+    <div class="cyc cyc-wood">木<br><small>나무</small></div><div class="cyc-arr">→생→</div>
+    <div class="cyc cyc-fire">火<br><small>불</small></div><div class="cyc-arr">→생→</div>
+    <div class="cyc cyc-earth">土<br><small>땅</small></div><div class="cyc-arr">→생→</div>
+    <div class="cyc cyc-metal">金<br><small>금</small></div><div class="cyc-arr">→생→</div>
+    <div class="cyc cyc-water">水<br><small>물</small></div><div class="cyc-arr">→생→</div>
+    <div class="cyc cyc-wood">木</div>
+  </div>
+  <div style="font-size:12px;color:var(--text2);margin-top:8px;line-height:1.8">
+  <strong>상생(相生):</strong> 木→火 / 火→土 / 土→金 / 金→水 / 水→木<br>
+  <strong>상극(相剋):</strong> 木剋土 / 土剋水 / 水剋火 / 火剋金 / 金剋木<br>
+  극은 나쁜 게 아닙니다. 너무 강한 기운을 제어해 균형을 잡는 역할입니다.
+  </div>
+</div>
+<div class="brk-box">
+  <div class="brk-title">② 土는 왜 환절기에 들어가는가?</div>
+  <div class="cycle-row" style="flex-wrap:wrap;gap:5px">
+    <div class="cyc cyc-wood" style="font-size:11px;min-width:0;padding:4px 8px">寅卯 봄(木)</div>
+    <div class="cyc cyc-earth" style="font-size:11px;min-width:0;padding:4px 8px">辰 환절기(土)</div>
+    <div class="cyc cyc-fire" style="font-size:11px;min-width:0;padding:4px 8px">巳午 여름(火)</div>
+    <div class="cyc cyc-earth" style="font-size:11px;min-width:0;padding:4px 8px">未 환절기(土)</div>
+    <div class="cyc cyc-metal" style="font-size:11px;min-width:0;padding:4px 8px">申酉 가을(金)</div>
+    <div class="cyc cyc-earth" style="font-size:11px;min-width:0;padding:4px 8px">戌 환절기(土)</div>
+    <div class="cyc cyc-water" style="font-size:11px;min-width:0;padding:4px 8px">亥子 겨울(水)</div>
+    <div class="cyc cyc-earth" style="font-size:11px;min-width:0;padding:4px 8px">丑 환절기(土)</div>
+  </div>
+  <p style="font-size:12px;color:var(--text2);margin-top:8px;line-height:1.8">성질이 다른 계절들이 충돌 없이 넘어가도록 土(진술축미)가 브레이크+연결고리 역할을 합니다. 이 사주에는 戌이 세 곳(일지·년지·시간 없음—실제로 일지·년지 두 곳)에 등장하는 것도 같은 이유입니다.</p>
+</div>
+<div class="brk-box">
+  <div class="brk-title">③ 자시·인시의 차이 — 시간과 절기가 같은 원리</div>
+  <div class="g2">
+    <div class="gi"><div class="gi-title">子時 (밤 11시~새벽 1시)</div><div class="gi-body">양기가 땅속에서 처음 생기는 순간. 씨앗 속의 변화. 눈에 보이지 않음. '설계도상의 시작'</div></div>
+    <div class="gi"><div class="gi-title">寅時 (새벽 3시~5시)</div><div class="gi-body">동이 트며 생명이 실제로 움직이기 시작. 싹이 땅 위로 나옴. 눈에 보이는 시작. '공사 현장의 시작'</div></div>
+  </div>
+  <p style="font-size:12px;color:var(--text2);margin-top:8px;line-height:1.8">명리학은 인간이 체감하는 '인시·인월'을 씁니다. 이 사주의 시간(時間)은 巳時(오전 9~11시)로, 낮에 가장 활발하게 에너지가 발산되는 시간에 태어났습니다.</p>
+</div>
+<div class="ins ins-green"><strong>이 세 가지를 이해했다면:</strong> 3단계부터 나오는 "土가 水를 극한다", "火가 土를 생한다" 표현이 자연스럽게 읽힐 겁니다.</div>`
+  },
+
+  /* ─────────── 3단계 ─────────── */
+  {
+    title: "3단계 — 신강·신약 판단",
+    sub: "팔자 8글자 전체로 일간의 힘을 측정한다",
+    tag: "mid", focus: [0,1,2,3], isBreak: false,
+    html: `
+<div class="why"><strong>왜 신강·신약을 판단하는가?</strong><br>
+일간이 강한지 약한지에 따라 같은 글자가 '좋은 것'이 되기도 하고 '힘든 것'이 되기도 합니다. 관성(官星)은 신강한 사람에게는 다스릴 수 있는 명예지만, 신약한 사람에게는 감당하기 힘든 압박입니다.</div>
+<div class="ins"><strong>판단 기준은 오행 관계입니다 (한자 뜻 아님).</strong><br>
+<strong>나를 돕는 기운(신강↑):</strong> 비겁(같은 오행) + 인성(나를 생해주는 오행)<br>
+<strong>나를 소모시키는 기운(신약↑):</strong> 식상(내가 생함) + 재성(내가 극함) + 관성(나를 극함)</div>
+<table>
+<thead><tr><th>글자</th><th>위치</th><th>오행</th><th>戊土와의 관계식</th><th>십성</th><th>강약 영향</th></tr></thead>
+<tbody>
+<tr class="hl"><td>戊</td><td>일간(나)</td><td>土</td><td>나 자신</td><td>—</td><td>기준점</td></tr>
+<tr class="hl"><td>戌</td><td>일지</td><td>土</td><td>같은 오행</td><td>비견</td><td>힘 보강</td></tr>
+<tr class="hl-r"><td>庚</td><td>월간</td><td>金</td><td>土生金 (내가 생해줌)</td><td>식신</td><td>힘 소모</td></tr>
+<tr class="hl-r"><td>子</td><td>월지</td><td>水</td><td>土剋水 (내가 극하나 월령의 水가 너무 강함)</td><td>정재</td><td>힘 소모 ✕실령</td></tr>
+<tr class="hl-r"><td>丙</td><td>년간</td><td>Fire</td><td>火生土 (나를 생해줌)</td><td>편인</td><td>힘 보강</td></tr>
+<tr class="hl"><td>戌</td><td>년지</td><td>土</td><td>같은 오행</td><td>비견</td><td>힘 보강</td></tr>
+<tr class="hl-r"><td>丁</td><td>시간</td><td>Fire</td><td>火生土 (나를 생해줌)</td><td>정인</td><td>힘 보강</td></tr>
+<tr class="hl-r"><td>巳</td><td>시지</td><td>Fire</td><td>火生土 (나를 생해줌)</td><td>편인</td><td>힘 보강</td></tr>
+</tbody></table>
+<div class="ins ins-amber"><strong>❓ "재성·식상이 힘 소모인데 왜 좋다고 하나?"</strong><br><br>
+식상·재성이 힘을 소모시키는 것은 맞습니다. 하지만 이것은 '씀씀이'이지 '나쁜 것'이 아닙니다.<br>
+이 사주는 신약에 가깝기 때문에 식상(庚·재능 표현)은 다소 에너지가 많이 드는 편이고, 재성(子·돈)도 다스리기 부담스러울 수 있습니다.<br>
+그러나 인성(丙·丁·巳, 귀인)이 3개나 있어 지원군이 풍부합니다.</div>
+<div class="flow">
+  <div class="chip chip-a">보강: 戌(일지)·戌(년지)·丙·丁·巳 (5개)</div>
+  <div class="arrow">vs</div>
+  <div class="chip chip-r">소모: 庚·子 (2개)</div>
+  <div class="arrow">+</div>
+  <div class="chip chip-r">월지 실령(子수)</div>
+  <div class="arrow">→</div>
+  <div class="chip chip-y">중약(中弱): 약간 신약</div>
+</div>
+<div class="ins ins-green"><strong>결론:</strong> 숫자상 보강이 더 많지만, 월지 실령(겨울·水)의 압박이 크고 식상 庚이 힘을 빼갑니다. 비겁(戌戌)과 인성(丙丁巳)의 지원으로 버티는 구조입니다. 전체적으로 <strong>중약(약한 신약)</strong>으로 봅니다. 귀인(인성)의 도움을 잘 활용할 때 빛납니다.</div>`
+  },
+
+  /* ─────────── 4단계 ─────────── */
+  {
+    title: "4단계 — 십성(十星) 배정",
+    sub: "8글자가 내 삶에서 각각 무엇을 뜻하는가?",
+    tag: "mid", focus: [0,1,2,3], isBreak: false,
+    html: `
+<div class="why"><strong>십성이란?</strong><br>
+일간과 나머지 글자의 오행 상생·상극 관계에 이름을 붙인 것입니다. 한자의 뜻이 아닌 <strong>오행의 관계</strong>가 기준입니다. 음양을 더해 10개가 됩니다.</div>
+<div class="flow" style="margin-bottom:12px">
+  <div class="chip chip-a">戊土 = 나</div><div class="arrow">→</div>
+  <div class="chip">土 = 비겁(경쟁·자아)</div>
+  <div class="chip chip-y">火 = 인성(귀인·학문)</div>
+  <div class="chip chip-g">金 = 식상(재능·표현)</div>
+  <div class="chip">水 = 재성(돈·현실)</div>
+  <div class="chip chip-r">木 = 관성(명예·규율)</div>
+</div>
+<table>
+<thead><tr><th>글자</th><th>위치</th><th>오행</th><th>십성</th><th>이 사주에서의 의미</th></tr></thead>
+<tbody>
+<tr class="hl"><td>戊</td><td>일간</td><td>土(양)</td><td>— (나)</td><td>큰 산·댐, 포용·안정·지도력</td></tr>
+<tr><td>戌</td><td>일지</td><td>土(양)</td><td>비견(比肩)</td><td>배우자 자리에 나와 같은 에너지 → 독립심·자존감</td></tr>
+<tr><td>庚</td><td>월간</td><td>金(양)</td><td>식신(食神)</td><td>사회 환경에서 재능·창의·먹복</td></tr>
+<tr class="hl-g"><td>子</td><td>월지</td><td>水(양)</td><td>정재(正財)</td><td>직업 환경에서 안정적 재물·현실 감각</td></tr>
+<tr class="hl-y"><td>丙</td><td>년간</td><td>Fire(양)</td><td>편인(偏印)</td><td>어린 시절 특수 재능·독특한 학문·귀인 에너지</td></tr>
+<tr><td>戌</td><td>년지</td><td>土(양)</td><td>비견(比肩)</td><td>조상·가문에 같은 에너지 → 독립적 가문 기질</td></tr>
+<tr class="hl-y"><td>丁</td><td>시간</td><td>Fire(음)</td><td>정인(正印)</td><td>노년에 학문·귀인·어머니 에너지 (가장 좋은 귀인)</td></tr>
+<tr class="hl-y"><td>巳</td><td>시지</td><td>Fire(양)</td><td>편인(偏印)</td><td>자녀·노후에 특수 재능·귀인 에너지</td></tr>
+</tbody></table>
+<div class="ins ins-amber"><strong>편인 vs 정인 이름 원리:</strong> 戊土(양)가 丙火(양)를 받으면 → 음양이 같아 편인(偏印). 戊土(양)가 丁火(음)를 받으면 → 음양이 달라 정인(正印). 음양 일치=편(偏), 불일치=정(正)입니다.</div>
+<div class="ins ins-green"><strong>이 사주 십성 총평:</strong> 인성(火·귀인) 3개(丙·丁·巳), 비겁(土·자아) 2개(戌·戌), 식신(金·재능) 1개(庚), 정재(水·돈) 1개(子). 귀인과 학문 에너지가 넘치고, 재능으로 돈을 버는 구조입니다. 관성(木)이 없어 규율·압박이 적고 자유롭습니다.</div>`
+  },
+
+  /* ─────────── 5단계 ─────────── */
+  {
+    title: "5단계 — 궁(宮) 해석",
+    sub: "세로(천간-지지) 관계로 삶의 영역을 읽는다",
+    tag: "mid", focus: [0,1,2,3], isBreak: false,
+    html: `
+<div class="why"><strong>궁이란?</strong><br>
+각 기둥(년·월·일·시)은 삶의 특정 영역(궁·宮)을 담당합니다. 기본적으로 <strong>세로(천간-지지)</strong>로 묶어 봅니다. 천간은 '마음·의지', 지지는 '실제 환경·실체'입니다.</div>
+<div class="g2">
+  <div class="gi" style="border-color:#e8c070"><div class="gi-title" style="color:var(--amber-dark)">천간(天干) — 위 글자</div><div class="gi-body">마음, 의지, 드러나는 에너지. 사건의 방향성·명분</div></div>
+  <div class="gi" style="border-color:#70c8a0"><div class="gi-title" style="color:var(--teal)">지지(地支) — 아래 글자</div><div class="gi-body">실제 환경, 몸, 실체. 눈에 보이는 결과·현실</div></div>
+</div>
+<table>
+<thead><tr><th>궁(宮)</th><th>천간+지지</th><th>담당 영역</th><th>이 사주 해석</th></tr></thead>
+<tbody>
+<tr style="background:var(--amber-light)"><td>일궁(日宮) ★</td><td>戊(나)·戌(비견)</td><td>나·배우자·중년</td><td>일간 아래 비견 → 배우자·중년에 나와 닮은 독립적 에너지. 비견일지는 자존심이 강한 배우자 또는 경쟁의식 시사</td></tr>
+<tr><td>월궁(月宮)</td><td>庚(식신)·子(정재)</td><td>직장·사회·청년기</td><td>식신+정재 → 재능으로 안정적 재물을 버는 구조. 창의적 직업, 전문직 성향</td></tr>
+<tr><td>년궁(年宮)</td><td>丙(편인)·戌(비견)</td><td>조상·어린 시절</td><td>편인+비견 → 독특한 재능 교육·독립적 가문. 어린 시절에 특별한 학습 환경</td></tr>
+<tr><td>시궁(時宮)</td><td>丁(정인)·巳(편인)</td><td>자식·노년·결실</td><td>정인+편인 두 겹 → 노후에 학문·귀인 복이 두 겹. 자녀가 학문적으로 성공할 가능성</td></tr>
+</tbody></table>
+<div class="ins"><strong>세로 읽기 예시 — 월궁:</strong><br>
+庚(식신·천간): "사회에서 재능을 발휘하고 싶은 마음, 창의적 기술 습득 의지"<br>
+子(정재·지지): "실제 직장 환경에 안정적 재물과 현실적 수입이 따름"<br>
+→ 종합: "창의적 재능으로 안정적 수입을 만드는 청년기 — 전문 기술직, 창작업 적합"</div>
+<div class="ins ins-amber">가로(기둥 간) 관계도 중요합니다. 합·충은 가로에서 발생합니다. 세로가 '기본 성격', 가로가 '사건·변동'입니다.</div>`
+  },
+
+  /* ─────────── 6단계 ─────────── */
+  {
+    title: "6단계 — 합·충 확인",
+    sub: "8글자 어디서 어디를 보는가? 이름은 어떻게 만들어지는가?",
+    tag: "adv", focus: [0,1,2,3], isBreak: false,
+    html: `
+<div class="why"><strong>합·충의 범위:</strong><br>
+<strong>천간 4글자끼리, 지지 4글자끼리</strong> 봅니다. 천간과 지지 사이의 직접 합·충은 없습니다. 가까운 자리일수록 영향이 강합니다.</div>
+<div class="ins"><strong>합(合) 종류:</strong><br>
+· 천간합 5가지: 甲己합·乙庚합·丙辛합·丁壬합·戊癸합<br>
+· 지지 육합 6가지: 子丑·寅亥·卯戌·辰酉·巳申·午未<br>
+· 지지 삼합 4가지: 亥卯未(木국)·寅午戌(火국)·巳酉丑(金국)·申子辰(水국)<br><br>
+<strong>충(沖) 종류:</strong><br>
+· 천간 충: 甲庚충·乙辛충·丙壬충·丁癸충<br>
+· 지지 충 6가지: 子午충·丑未충·寅申충·卯酉충·辰戌충·巳亥충<br><br>
+<strong>형(刑) — 이 사주에 해당:</strong><br>
+· 戌戌 자형(自刑): 같은 글자 둘이 만나면 자기 자신을 치는 형</div>
+
+<p style="font-size:12px;font-weight:700;color:var(--text2);margin:14px 0 6px">천간 합·충 매트릭스</p>
+<table class="mx">
+<thead><tr><th></th><th class="me">戊(일간)</th><th>庚(월간)</th><th>丙(년간)</th><th>丁(시간)</th></tr></thead>
+<tbody>
+<tr><td><strong>戊</strong></td><td class="self">—</td><td class="none">—</td><td class="none">—</td><td class="none">—</td></tr>
+<tr><td><strong>庚</strong></td><td class="none">—</td><td class="self">—</td><td class="none">—</td><td class="none">—</td></tr>
+<tr><td><strong>丙</strong></td><td class="none">—</td><td class="none">—</td><td class="self">—</td><td class="none">—</td></tr>
+<tr><td><strong>丁</strong></td><td class="none">—</td><td class="none">—</td><td class="none">—</td><td class="self">—</td></tr>
+</tbody></table>
+<p style="font-size:11px;color:var(--text3);margin-top:4px">※ 이 사주 천간에는 직접적 합·충이 없습니다. 각자 독립적으로 작용합니다.</p>
+
+<p style="font-size:12px;font-weight:700;color:var(--text2);margin:14px 0 6px">지지 합·충·형 매트릭스</p>
+<table class="mx">
+<thead><tr><th></th><th class="me">戌(일지)</th><th>子(월지)</th><th>戌(년지)</th><th>巳(시지)</th></tr></thead>
+<tbody>
+<tr><td><strong>戌(일지)</strong></td><td class="self">—</td><td class="none">—</td><td class="hyung">戌戌 자형<br>자기 파극</td><td class="none">—</td></tr>
+<tr><td><strong>子(월지)</strong></td><td class="none">—</td><td class="self">—</td><td class="none">—</td><td class="none">—</td></tr>
+<tr><td><strong>戌(년지)</strong></td><td class="hyung">戌戌 자형</td><td class="none">—</td><td class="self">—</td><td class="none">—</td></tr>
+<tr><td><strong>巳(시지)</strong></td><td class="none">—</td><td class="none">—</td><td class="none">—</td><td class="self">—</td></tr>
+</tbody></table>
+
+<div class="ins ins-green"><strong>핵심 반응 해석:</strong><br>
+① <strong>戌戌 자형(自刑)</strong>: 일지 戌(비견)과 년지 戌(비견)이 자형 → 같은 오행끼리 충돌, 자기 자신을 괴롭히는 심리 패턴. "완벽주의·자기 비판이 강하고, 비슷한 성향의 사람과 부딪힘"<br><br>
+② <strong>巳午未 삼합 미완성</strong>: 시지 巳가 있지만 午와 未가 없어 火국이 미완성. 인성의 기운이 반쯤 묶여 있다가 대운·세운에서 午나 未가 오면 인성이 강하게 발동됩니다.<br><br>
+③ <strong>申子辰 수국 미완성</strong>: 월지 子가 있지만 申과 辰이 없어 재성 水국도 미완성. 대운에서 申이나 辰이 오면 재물운이 강하게 발동됩니다.</div>
+<div class="ins ins-amber">천간에 합·충이 없다는 것은 이 사주의 천간(의지·방향)이 서로 갈등 없이 각자의 역할을 한다는 의미입니다. 안정적이고 일관된 성격의 지표입니다.</div>`
+  },
+
+  /* ─────────── 7단계 ─────────── */
+  {
+    title: "7단계 — 종합 풀이",
+    sub: "일간 → 월지 → 일지 → 시주 → 년주 순서의 이유",
+    tag: "adv", focus: [0,1,2,3], isBreak: false,
+    html: `
+<div class="why"><strong>왜 이 순서인가? — 근묘화실(根苗花實)의 논리</strong><br>
+나무로 비유: 년주(뿌리·根) → 월주(줄기·苗) → 일주(꽃·花) → 시주(열매·實).<br>
+풀이 순서는 '영향력이 강한 것부터'입니다. 나(일간) → 가장 강한 환경(월지) → 가장 가까운 현실(일지) → 미래(시주) → 과거(년주).</div>
+<div class="steps-flow">
+  <div class="step-item act">
+    <div class="step-n">①</div>
+    <div><div class="step-t">일간 — 나 자신 (기준점)</div>
+    <div class="step-d">戊토(양) → "큰 산처럼 포용력이 넓고 안정감을 주는 존재. 高고집·뚝심·결단력이 있고, 한번 마음먹으면 끝까지 밀고 가는 지도자형."<br>
+    <em>여명(女命)에서 戊戌 일주: 주체적이고 기개 있는 여성. 남의 지배를 받기 싫어하는 성향.</em></div></div>
+  </div>
+  <div class="step-item act2">
+    <div class="step-n g">②</div>
+    <div><div class="step-t">월지 — 가장 강한 환경 (영향력 1위)</div>
+    <div class="step-d">子수(정재) + 실령 → "겨울 한복판에 태어난 신약 사주. 강한 재성(돈·현실) 환경이 나를 압박. 유연하고 현실 감각이 뛰어남."<br>
+    <em>子월 = 庚식신이 월간에 있어 '재능→돈'의 구조가 뚜렷합니다.</em></div></div>
+  </div>
+  <div class="step-item">
+    <div class="step-n">③</div>
+    <div><div class="step-t">일지 — 배우자·중년 (가장 가까운 현실)</div>
+    <div class="step-d">戌토(비견) + 戌戌 자형 → "배우자·중년에 나와 비슷한 기질의 에너지. 자형으로 인해 자기 비판이나 파트너와의 마찰이 생길 수 있으나, 강한 자아를 통해 성장하는 구조."<br>
+    <em>戌은 화개살(火蓋殺)도 있어 예술·종교·철학적 깊이가 있습니다.</em></div></div>
+  </div>
+  <div class="step-item">
+    <div class="step-n">④</div>
+    <div><div class="step-t">시주 — 노년·결실 (미래)</div>
+    <div class="step-d">丁巳(정인+편인) → "노년에 귀인·학문 에너지 두 겹. 정인 丁은 가장 순수한 귀인의 기운, 편인 巳는 특수 재능. 巳午未 삼합이 대운에서 완성되면 인성이 강하게 발동해 학문·귀인 복이 극대화됨."</div></div>
+  </div>
+  <div class="step-item">
+    <div class="step-n">⑤</div>
+    <div><div class="step-t">년주 — 조상·어린 시절 (과거·뿌리)</div>
+    <div class="step-d">丙戌(편인+비견) → "어린 시절에 독특한 재능을 키우는 환경과 강한 자아 형성. 丙 편인은 특수하고 창의적인 학습. 가문의 독립적 기질이 나에게 이어짐."<br>
+    <em>천간 합·충 없음 → 어린 시절 환경이 비교적 안정적이고 갈등이 적음.</em></div></div>
+  </div>
+</div>
+<div class="ins ins-green"><strong>한 줄 종합:</strong> 겨울에 태어난 신약 戊토가 강한 현실(子·정재)과 재능(庚·식신) 위에서 자기 주관(戌戌·비견)으로 버티며, 귀인(丁丙巳·인성) 3개의 든든한 지원을 받아 노년에 학문과 귀인 복이 결실로 맺히는 구조. <strong>관성(木)이 없어 규율·압박이 적고 자유로우며, 재능으로 돈을 버는 전문직·창작업이 적합.</strong></div>
+<div class="ins ins-amber" style="margin-top:10px"><strong>풀이 순서 요약:</strong> 일간 확인 → 월지 득령 판단 → 신강·신약 결론 → 십성 배정 → 궁 해석(세로) → 합충 확인(가로) → 일지·시주·년주 순 서술 → 대운(역행 9수·현재 19세 戊戌 대운)·세운으로 확장</div>
+<div class="sep"></div>
+<div class="ins" style="font-size:12px;color:var(--text2)"><strong>📌 현재 대운 참고:</strong> 만세력상 19세 대운은 <strong>戊戌</strong>(비견)으로, 일주와 동일한 글자입니다. 자아가 강해지고 독립심이 극대화되는 시기입니다. 20세(2026년) 세운은 <strong>丙午</strong>(편인+편인)로, 인성이 강하게 발동해 학문과 귀인의 해가 됩니다.</div>`
+  },
+
+  /* ─────────── 일주론 ─────────── */
+  {
+    title: "일주론(日柱論) — 戊戌 일주의 60갑자 특성",
+    sub: "일간+일지 조합이 만들어내는 고유한 성격과 운명 패턴",
+    tag: "adv", focus: [2], isBreak: false,
+    html: `
+<div class="why"><strong>일주론이란?</strong><br>
+60갑자 각각의 조합(일간+일지)은 단순히 오행을 더하는 것을 넘어, 그 배합이 만드는 고유한 에너지 패턴이 있습니다. 같은 戊토라도 일지가 子냐 戌이냐에 따라 전혀 다른 삶의 패턴이 나옵니다.</div>
+
+<div class="g2">
+  <div class="gi" style="border-color:#e8c070;background:var(--amber-light)">
+    <div class="gi-title" style="color:var(--amber-dark)">戊戌(무술) — 35번째 일주</div>
+    <div class="gi-body">
+      <strong>상징:</strong> 산 위의 산(山上之山). 두 개의 土가 겹친 형상.<br>
+      <strong>천간 戊:</strong> 큰 댐·높은 산. 양토(陽土)의 극치.<br>
+      <strong>지지 戌:</strong> 건조한 가을 흙. 火의 기운을 품은 土(戌 속 丁·戊·辛).
+    </div>
+  </div>
+  <div class="gi" style="border-color:#cdc8ba">
+    <div class="gi-title">지장간(支藏干) — 戌 속 글자</div>
+    <div class="gi-body">
+      戌 안에는 세 글자가 숨어있습니다:<br>
+      · <strong>辛(신금)</strong> — 여기(餘氣) 9일<br>
+      · <strong>丁(정화)</strong> — 중기(中氣) 3일<br>
+      · <strong>戊(무토)</strong> — 정기(正氣) 18일<br>
+      일지 戌의 정기가 나(戊)와 같아 <strong>자좌(自坐)</strong> 구조입니다.
+    </div>
+  </div>
+</div>
+
+<div class="ins ins-amber"><strong>자좌(自坐)란?</strong> 일간과 일지의 지장간 정기가 같은 오행일 때를 말합니다. 戊土가 戌(정기 戊)에 앉아 있으니 "내가 내 위에 앉은" 구조. 자기 기반이 탄탄하지만 고집과 아집이 강해질 수 있습니다.</div>
+
+<p style="font-size:13px;font-weight:700;color:var(--text);margin:16px 0 8px">戊戌 일주의 핵심 특성</p>
+<table>
+<thead><tr><th>영역</th><th>특성</th><th>긍정적 발현</th><th>주의할 점</th></tr></thead>
+<tbody>
+<tr class="hl-y"><td>성격·기질</td><td>산처럼 묵직하고 고집스러움</td><td>흔들리지 않는 뚝심, 신뢰감</td><td>융통성 부족, 완고함</td></tr>
+<tr><td>사고 방식</td><td>원칙주의·흑백 논리</td><td>일관성·정직함</td><td>타협이 어렵고 외로움</td></tr>
+<tr class="hl-y"><td>대인 관계</td><td>친해지면 깊고 오래감</td><td>한번 맺은 인연은 끝까지</td><td>처음 벽이 높음</td></tr>
+<tr><td>여명(女命)</td><td>자기 주관·독립심 강함</td><td>주체적 삶, 전문성 발휘</td><td>가정보다 자아 우선 경향</td></tr>
+<tr class="hl-y"><td>직업 적성</td><td>전문·기술·예술·영성</td><td>화개살이 있어 깊이 파고듦</td><td>빠른 변화 적응 어려움</td></tr>
+<tr><td>건강</td><td>土 과다 → 소화기계</td><td>타고난 지구력·회복력</td><td>위장·비장, 무릎·관절 주의</td></tr>
+</tbody></table>
+
+<div class="ins ins-green"><strong>괴강살(魁罡殺) — 戊戌의 특수 기질</strong><br>
+만세력에 '태극귀인·괴강살'이 표시되어 있습니다. 괴강살(魁罡殺)이란 庚辰·庚戌·壬辰·戊戌 네 일주에 해당하는 특수한 기운으로, <strong>총명함과 카리스마가 극단적으로 강한</strong> 대신 굴복을 모르는 기질이 있습니다.<br><br>
+· 괴강 여명은 자기 주관이 강해 배우자에게 끌려다니지 않음<br>
+· 대운이 좋으면 사회적으로 두각을 나타냄<br>
+· 大凶運에서는 기복이 극단적일 수 있으니 충·형 대운에 신중해야 함</div>
+
+<div class="ins ins-amber"><strong>화개살(華蓋殺) — 戌의 특수 기질</strong><br>
+일지·년지·시지에 화개살(戌·戌·巳)이 겹쳐 있습니다. 화개살은 예술·종교·철학·학문의 기운입니다. 같은 자리에 세 번 반복되므로 이 방향으로의 재능과 집중력이 매우 강합니다. 예술, 심리, 철학, 영성, 학문 연구 분야에서 두각을 나타낼 가능성이 높습니다.</div>
+
+<div class="g2" style="margin-top:14px">
+  <div class="gi" style="background:var(--teal-bg);border-color:#70c8a0">
+    <div class="gi-title" style="color:var(--teal)">12운성 — 묘(墓)</div>
+    <div class="gi-body">일지 戌은 戊토의 12운성상 <strong>묘(墓)</strong>. 창고에 기운이 쌓이는 형상. 한 번 모이면 잘 안 나가는 축적형. 재물·에너지를 내부에 쌓는 경향이 강합니다.</div>
+  </div>
+  <div class="gi">
+    <div class="gi-title">공망(空亡) — 辰·巳</div>
+    <div class="gi-body">일주 기준 공망은 <strong>辰·巳</strong>. 辰(정재 포함)·巳(시지·편인)가 공망. 시지 巳가 공망이면 귀인의 기운이 허공에 뜨는 경향 → 귀인 복은 있으나 현실화가 느릴 수 있음.</div>
+  </div>
+</div>`
+  },
+
+  /* ─────────── 신살론 ─────────── */
+  {
+    title: "신살론(神殺論) — 주요 신살 도출과 해석",
+    sub: "만세력에 표시된 신살을 원리부터 이해한다",
+    tag: "adv", focus: [0,1,2,3], isBreak: false,
+    html: `
+<div class="why"><strong>신살이란?</strong><br>
+특정 지지 조합이나 위치에서 파생되는 에너지 패턴에 이름을 붙인 것입니다. 십성·합충으로 다 설명되지 않는 고유한 작용을 보완합니다. 신살 하나만으로 길흉을 단정 짓지 않고, 십성·신강약과 함께 종합적으로 봅니다.</div>
+
+<p style="font-size:13px;font-weight:700;color:var(--text);margin:0 0 10px">이 사주의 주요 신살 총람</p>
+<table>
+<thead><tr><th>신살</th><th>위치</th><th>도출 원리</th><th>핵심 의미</th><th>이 사주 적용</th></tr></thead>
+<tbody>
+<tr class="hl-y"><td>천을귀인<br>(天乙貴人)</td><td>사주 전체</td><td>戊일간 → 귀인 지지: <strong>丑·未</strong></td><td>하늘이 내린 귀인. 위기에서 귀인이 나타남</td><td>사주 내 丑·未 없음 → 외부 대운·세운에서 丑·未 올 때 귀인 발동 (2027 丁未 세운 주목)</td></tr>
+<tr><td>태극귀인<br>(太極貴人)</td><td>일주·년주</td><td>일지·년지 戌 → 태극귀인 (戌·亥 해당)</td><td>마지막 순간 구원받는 기운. 극적 반전의 귀인</td><td>일지+년지 두 곳 → 인생의 극적 반전과 귀인이 이중으로 작용</td></tr>
+<tr class="hl-y"><td>화개살<br>(華蓋殺)</td><td>일지·년지·시지</td><td>寅午戌 삼합에서 戌, 巳酉丑에서 巳 → 화개</td><td>예술·종교·학문·고독의 기운</td><td>세 곳에 겹침 → 예술·심리·철학·영성 분야 재능이 매우 강함</td></tr>
+<tr><td>괴강살<br>(魁罡殺)</td><td>일주</td><td>戊戌·庚辰·庚戌·壬辰 일주에 해당</td><td>총명·카리스마·극단적 기복</td><td>총명하고 카리스마 있으나 굴복 모름. 대운 충시 기복 주의</td></tr>
+<tr class="hl-y"><td>망신살<br>(亡身殺)</td><td>시주 丁巳</td><td>월지 子 기준 → 망신살 지지: 巳</td><td>명예·체면 손상, 구설</td><td>시지 巳가 공망이기도 해 이중 약화. 노년에 구설 주의. 단, 공망이면 망신의 흉이 반감</td></tr>
+<tr><td>재살<br>(災殺)</td><td>월지 子</td><td>년지 戌 기준 → 재살: 子</td><td>사고·관재·급변. '수옥살'이라고도 함</td><td>월지에 위치 → 청년기·직업 환경에서 갑작스러운 변화나 관재 주의. 庚식신이 제어</td></tr>
+<tr class="hl-y"><td>천덕귀인<br>(天德貴人)</td><td>시주</td><td>子월생 → 천덕귀인: 壬</td><td>하늘의 덕. 큰 재앙을 막아주는 보호신</td><td>시주에 천덕귀인(壬) 기운 → 노년에 하늘의 보호. 단, 壬이 사주에 없어 대운에서 壬 올 때 발동 (69세 癸巳 대운 근처)</td></tr>
+<tr><td>건록<br>(建祿)</td><td>시주</td><td>시지 巳 → 戊토의 건록지: 巳</td><td>일간의 힘이 가장 강한 자리. 자수성가·독립</td><td>시지에 건록 → 노년에 자립·자수성가 에너지. 스스로 일어서는 결실</td></tr>
+<tr class="hl-y"><td>원진·귀문<br>(怨嗔·鬼門)</td><td>시주·일주·년주</td><td>巳↔戌 원진, 子↔未 귀문(해당 없음)</td><td>원진: 서로 밀치는 인연. 귀문: 신비롭고 예민한 감성</td><td>巳(시지)↔戌(일지·년지) 원진 → 내면의 귀인(巳)과 자아(戌)가 서로 긴장 관계. 직관과 현실 사이 갈등</td></tr>
+</tbody></table>
+
+<p style="font-size:13px;font-weight:700;color:var(--text);margin:18px 0 8px">주요 신살 개별 해설</p>
+
+<div class="brk-box" style="margin-bottom:10px">
+  <div class="brk-title">① 천을귀인(天乙貴人) — 귀인의 기본</div>
+  <p style="font-size:12px;color:var(--text2);line-height:1.8"><strong>도출법:</strong> 일간에 따라 귀인 지지가 정해집니다. 戊·己일간 → 丑·未가 귀인 지지.<br>
+  이 사주에는 丑·未가 없습니다. 하지만 <strong>2027년 세운 丁未</strong>에서 未가 들어오면 천을귀인이 발동해 귀인을 만날 가능성이 높습니다. 또한 49세 대운 乙未에서도 천을귀인 운이 옵니다.</p>
+</div>
+
+<div class="brk-box" style="margin-bottom:10px">
+  <div class="brk-title">② 괴강살(魁罡殺) — 이 사주의 핵심 신살</div>
+  <p style="font-size:12px;color:var(--text2);line-height:1.8">戊戌은 4대 괴강일주 중 하나입니다. 특징은 다음과 같습니다:<br>
+  · <strong>총명·판단력:</strong> 머리가 예리하고 판단이 빠름<br>
+  · <strong>카리스마:</strong> 존재감이 강하고 지도자적 풍모<br>
+  · <strong>여명의 괴강:</strong> 전통적으로 "남편을 극한다"고 하나, 현대적으로는 <em>자신의 분야에서 탁월한 능력을 발휘하는 전문직 여성</em>으로 봅니다<br>
+  · <strong>대운 충시 주의:</strong> 괴강일주는 충 대운(辰戌충)에서 기복이 크게 나타남</p>
+</div>
+
+<div class="brk-box">
+  <div class="brk-title">③ 역마살(驛馬殺) 부재와 의미</div>
+  <p style="font-size:12px;color:var(--text2);line-height:1.8">만세력에 역마살이 표시되지 않았습니다. 역마살의 도출법: 년지·일지에서 봅니다. 戌에서의 역마는 申.<br>
+  사주에 申이 없어 원국 역마가 없습니다. <strong>이동·변화보다는 한 곳에 뿌리내리고 깊이 파고드는 성향</strong>이 강합니다. 화개살이 3개나 있어 한 분야를 오래 연구하는 타입입니다.<br>
+  단, 대운·세운에서 申이 들어오면 역마가 발동해 이동·변화가 생깁니다 (2028 戊申 세운).</p>
+</div>
+
+<div class="ins ins-green"><strong>신살 종합:</strong> 태극귀인(2곳)·괴강살·화개살(3곳)의 조합은 <strong>"탁월한 전문성과 극적 반전의 귀인을 가진 예술·학문형 인재"</strong>의 전형적 패턴입니다. 망신살·재살은 있으나 공망·제어 글자로 약화되어 있습니다.</div>`
+  },
+
+  /* ─────────── 용신론 ─────────── */
+  {
+    title: "용신(用神) — 억부법으로 찾는 핵심 기운",
+    sub: "이 사주에서 가장 필요한 오행은 무엇인가?",
+    tag: "adv", focus: [0,1,2,3], isBreak: false,
+    html: `
+<div class="why"><strong>용신(用神)이란?</strong><br>
+사주의 균형을 잡아주는 핵심 오행입니다. 억부법(抑扶法)은 가장 기본적인 용신 도출법으로, "신강하면 극설(剋洩)하고 신약하면 생부(生扶)한다"는 원리입니다.</div>
+
+<div class="ins"><strong>억부법(抑扶法) 기본 원리</strong><br>
+· <strong>신강 사주:</strong> 일간이 너무 강함 → 극(관성)하거나 설(식상)하는 오행이 용신<br>
+· <strong>신약 사주:</strong> 일간이 약함 → 생(인성)하거나 부(비겁)하는 오행이 용신<br><br>
+이 사주는 <strong>중약(약한 신약)</strong> → 일간 戊토를 도와주는 오행이 필요합니다.</div>
+
+<p style="font-size:13px;font-weight:700;color:var(--text);margin:14px 0 8px">오행별 역할 분석</p>
+<table>
+<thead><tr><th>오행</th><th>십성</th><th>사주 내 글자</th><th>일간에 미치는 영향</th><th>용희기구 판정</th></tr></thead>
+<tbody>
+<tr class="hl-r"><td><strong>火 🔥</strong></td><td>인성(丙·丁·편인·정인)</td><td>丙(년간)·丁(시간)·巳(시지)</td><td>土를 생(生)함 → 일간 직접 강화</td><td style="color:var(--teal);font-weight:700">용신(用神) ★</td></tr>
+<tr class="hl"><td><strong>土 🏔</strong></td><td>비겁(戊·戌)</td><td>戌(일지)·戌(년지)</td><td>같은 오행 → 일간 보강</td><td style="color:var(--teal);font-weight:700">희신(喜神) ◎</td></tr>
+<tr><td><strong>金 ⚙</strong></td><td>식상(庚)</td><td>庚(월간)</td><td>土가 金을 생 → 힘 소모</td><td style="color:var(--text3)">한신(閑神) △</td></tr>
+<tr class="hl-r"><td><strong>水 💧</strong></td><td>재성(子)</td><td>子(월지)</td><td>土가 水를 극하나 월령 水 강함 → 압박</td><td style="color:var(--red-dark);font-weight:700">기신(忌神) ✕</td></tr>
+<tr><td><strong>木 🌿</strong></td><td>관성</td><td>사주 내 없음</td><td>木이 土를 극 → 일간 소모</td><td style="color:var(--red-dark);font-weight:700">구신(仇神) ✕</td></tr>
+</tbody></table>
+
+<div class="g2" style="margin-top:14px">
+  <div class="gi" style="border-color:#e8b060;background:var(--amber-light)">
+    <div class="gi-title" style="color:var(--amber-dark)">용신(用神) — 火</div>
+    <div class="gi-body" style="font-size:12px;line-height:1.8">
+      이 사주에서 가장 필요한 오행.<br>
+      <strong>丙火(편인)·丁火(정인):</strong> 귀인·학문·지혜로 일간을 직접 강화.<br>
+      사주에 丙·丁·巳 세 개 있어 이미 용신이 풍부합니다. <strong>Fire 기운이 강한 해(오·사년)·계절(여름)에 에너지가 충만합니다.</strong>
+    </div>
+  </div>
+  <div class="gi" style="border-color:#70c8a0;background:var(--teal-bg)">
+    <div class="gi-title" style="color:var(--teal)">희신(喜神) — 土</div>
+    <div class="gi-body" style="font-size:12px;line-height:1.8">
+      용신을 돕고 일간을 보강하는 오행.<br>
+      <strong>戊·己·辰·戌·丑·未:</strong> 비겁·환절기 기운으로 자아 강화.<br>
+      사주에 戌戌 이미 있어 희신도 풍부. <strong>土 기운이 강한 환절기, 土년에 안정감과 자신감이 높습니다.</strong>
+    </div>
+  </div>
+</div>
+
+<div class="g2">
+  <div class="gi" style="border-color:#f0a080;background:var(--red-bg)">
+    <div class="gi-title" style="color:var(--red-dark)">기신(忌神) — 水</div>
+    <div class="gi-body" style="font-size:12px;line-height:1.8">
+      가장 피해야 할 오행.<br>
+      <strong>壬·癸·子·亥:</strong> 일간을 압박하고 힘을 소진.<br>
+      <strong>Water 기운이 강한 해(자·해년)·계절(겨울)에 체력·자신감 저하, 스트레스 주의.</strong>
+    </div>
+  </div>
+  <div class="gi">
+    <div class="gi-title">구신(仇神) — 木</div>
+    <div class="gi-body" style="font-size:12px;line-height:1.8">
+      기신을 생하고 일간을 극하는 오행.<br>
+      <strong>甲·乙·寅·卯:</strong> 사주에 없어 원국에서 작용 약함.<br>
+      대운·세운에서 木이 들어올 때 직업·명예 관련 갈등 발생 가능.</div>
+  </div>
+</div>
+
+<div class="ins ins-green"><strong>용신을 활용하는 실생활 팁</strong><br>
+<strong>좋은 색:</strong> 붉은색·주황색·노란색·갈색 (火·土 계열)<br>
+<strong>피할 색:</strong> 검은색·짙은 파란색 (水 계열)<br>
+<strong>좋은 방위:</strong> 남쪽(火)·중앙(土)<br>
+<strong>좋은 계절:</strong> 여름·환절기<br>
+<strong>좋은 직업군:</strong> 火기운 — 교육·상담·예술·영상·디자인 / 土기운 — 부동산·건설·농업·요식업<br>
+<strong>에너지 보충법:</strong> 따뜻한 환경, 햇빛, 스스로를 표현하는 창작 활동</div>
+
+<div class="ins ins-amber"><strong>⚠ 용신은 절대적 기준이 아닙니다.</strong><br>
+억부법은 가장 기본적 도출법입니다. 조후법(調候法·계절 균형)으로 보면 겨울(子월)에 태어났으므로 火(온기)가 더욱 절실하여 억부와 조후 용신이 일치합니다. 이처럼 두 방법이 같은 용신을 가리킬 때 그 용신의 신뢰도가 높아집니다.</div>`
+  },
+
+  /* ─────────── 8단계 ─────────── */
+  {
+    title: "8단계 — 대운·세운 흐름",
+    sub: "현재 20세 · 19세 대운 戊戌 진행 중 · 역행 9수",
+    tag: "adv", focus: [0,1,2,3], isBreak: false,
+    html: `
+<div class="why"><strong>대운과 세운이란?</strong><br>
+<strong>대운(大運):</strong> 약 10년 단위로 바뀌는 큰 흐름. 원국 사주와 어우러져 삶의 큰 방향을 결정합니다.<br>
+<strong>세운(歲運):</strong> 매년 바뀌는 흐름. 대운 안에서 구체적 사건이 발생합니다.<br>
+이 사주는 역행(逆行) 9수 대운으로, 9세·19세·29세… 순으로 대운이 바뀝니다.</div>
+
+<p style="font-size:13px;font-weight:700;color:var(--text);margin:0 0 10px">전체 대운 흐름표</p>
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>대운 나이</th><th>대운</th><th>천간 십성</th><th>지지 십성</th><th>핵심 키워드</th><th>용희기신</th></tr></thead>
+<tbody>
+<tr><td>9세</td><td>己亥</td><td>겁재</td><td>정재</td><td>자아 형성·재물 환경 경험</td><td>희신+기신 혼재</td></tr>
+<tr class="hl" style="background:#fff5e0"><td style="color:var(--amber-dark);font-weight:700">19세 ★현재</td><td style="color:var(--amber-dark);font-weight:700">戊戌</td><td style="color:var(--amber-dark)">비견</td><td style="color:var(--amber-dark)">비견</td><td>자아 극대화·독립·경쟁</td><td style="color:var(--teal);font-weight:700">희신 ◎</td></tr>
+<tr class="hl-g"><td>29세</td><td>丁酉</td><td>정인</td><td>식신</td><td>귀인·학문→재능 발휘 전성기</td><td style="color:var(--teal);font-weight:700">용신+한신 ◎</td></tr>
+<tr class="hl-g"><td>39세</td><td>丙申</td><td>편인</td><td>식신</td><td>특수 재능·귀인 활약</td><td style="color:var(--teal);font-weight:700">용신+한신 ◎</td></tr>
+<tr class="hl-y"><td>49세</td><td>乙未</td><td>정관</td><td>겁재+천을귀인</td><td>명예·천을귀인 발동</td><td>구신+희신 혼재</td></tr>
+<tr class="hl-y"><td>59세</td><td>甲午</td><td>편관</td><td>정인</td><td>관성 압박, 인성이 완충</td><td>구신+용신 혼재</td></tr>
+<tr><td>69세</td><td>癸巳</td><td>정재</td><td>편인</td><td>재물·귀인, 巳午未 삼합 완성 조짐</td><td>기신+용신 혼재</td></tr>
+<tr><td>79세</td><td>壬辰</td><td>편재</td><td>비견+정재</td><td>재물 확대, 申子辰 수국 완성</td><td>기신+희신 혼재</td></tr>
+<tr><td>89세</td><td>辛卯</td><td>상관</td><td>정관</td><td>말년 상관견관, 자유로운 표현</td><td>한신+구신</td></tr>
+</tbody></table>
+</div>
+
+<div class="ins ins-green" style="margin-top:14px"><strong>19세 대운(戊戌) 심층 분석 — 현재 진행 중</strong><br>
+대운 戊戌은 일주와 완전히 동일한 글자입니다. 이런 경우를 <strong>'대운복음(大運伏吟)'</strong>이라 합니다.<br><br>
+· <strong>긍정:</strong> 자신의 본질적 에너지가 극대화되는 시기. 자아 확립, 독립, 주체적 선택의 시기<br>
+· <strong>주의:</strong> 戌戌 자형이 대운에서도 반복 → 자기 비판, 고집, 주변과의 마찰이 더 두드러짐<br>
+· <strong>괴강 발동:</strong> 괴강일주가 괴강 대운을 만나면 총명함이 극대화. 공부·전문 기술에 집중하면 탁월한 성과</div>
+
+<p style="font-size:13px;font-weight:700;color:var(--text);margin:18px 0 8px">2026~2034 세운 흐름 상세</p>
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>연도</th><th>나이</th><th>세운</th><th>십성(천간/지지)</th><th>주요 이벤트·흐름</th><th>길흉</th></tr></thead>
+<tbody>
+<tr class="hl-g"><td>2026</td><td>20세</td><td style="font-family:'Noto Serif KR',serif;font-size:15px;font-weight:700">丙午</td><td>편인 / 정인</td><td>인성 두 겹 발동. 학업·시험·귀인의 해. 巳午 연결로 火 강화. <strong>용신년 최고</strong></td><td style="color:var(--teal);font-weight:700">대길 ◎◎</td></tr>
+<tr class="hl-y"><td>2027</td><td>21세</td><td style="font-family:'Noto Serif KR',serif;font-size:15px;font-weight:700">丁未</td><td>정인 / 겁재+천을귀인</td><td><strong>천을귀인 발동년!</strong> 丁정인+未겁재. 인생 귀인 등장 가능. 학업·인간관계 확장</td><td style="color:var(--teal);font-weight:700">길 ◎</td></tr>
+<tr><td>2028</td><td>22세</td><td style="font-family:'Noto Serif KR',serif;font-size:15px;font-weight:700">戊申</td><td>비견 / 식신</td><td>자아 강화·역마 발동. 이동·해외·새로운 분야 도전. 독립 시도</td><td>중길 △◎</td></tr>
+<tr><td>2029</td><td>23세</td><td style="font-family:'Noto Serif KR',serif;font-size:15px;font-weight:700">己酉</td><td>겁재 / 식신</td><td>경쟁·재능 발휘. 巳酉丑 금국 미완성(丑 없음). 실력 쌓는 해</td><td>중 △</td></tr>
+<tr class="hl-r"><td>2030</td><td>24세</td><td style="font-family:'Noto Serif KR',serif;font-size:15px;font-weight:700">庚戌</td><td>식신 / 비견</td><td>식신+비견. 재능 표현·자아 강화. 戌戌戌 자형 트리플! 자기 파괴적 완벽주의 극주의</td><td style="color:var(--red-dark)">주의 ✕</td></tr>
+<tr class="hl-r"><td>2031</td><td>25세</td><td style="font-family:'Noto Serif KR',serif;font-size:15px;font-weight:700">辛亥</td><td>상관 / 정재</td><td>상관+재성. 규범 탈피 욕구 강함. 재물 변동, 구설 주의. 창의력은 강함</td><td style="color:var(--red-dark)">주의 ✕</td></tr>
+<tr><td>2032</td><td>26세</td><td style="font-family:'Noto Serif KR',serif;font-size:15px;font-weight:700">壬子</td><td>편재 / 정재</td><td>재성 겹침. 水 기신 강화. 재물 관련 스트레스, 체력 저하 주의. 현실적 도전</td><td style="color:var(--red-dark)">기신년 주의</td></tr>
+<tr class="hl-y"><td>2033</td><td>27세</td><td style="font-family:'Noto Serif KR',serif;font-size:15px;font-weight:700">癸丑</td><td>정재 / 겁재+천을귀인</td><td>천을귀인(丑) 재발동! 재물+귀인. 2032 힘든 해를 넘긴 후 귀인이 구원. 반전</td><td style="color:var(--teal)">귀인 반전 ◎</td></tr>
+<tr class="hl-g"><td>2034</td><td>28세</td><td style="font-family:'Noto Serif KR',serif;font-size:15px;font-weight:700">甲寅</td><td>편관 / 편관</td><td>관성 겹침. 책임·사회적 역할 강조. 29세 丁酉 대운 진입 전 준비기. 진로 확정</td><td>중 △</td></tr>
+</tbody></table>
+</div>
+
+<div class="ins ins-amber"><strong>29세 丁酉 대운 미리보기 (2034~2044)</strong><br>
+다음 대운 丁酉는 <strong>정인(丁)+식신(酉)</strong>의 조합입니다. "귀인의 지원을 받아 재능을 마음껏 발휘하는" 구조로, 이 사주에서 가장 이상적인 대운 중 하나입니다. 전문 분야에서 사회적 인정을 받는 전성기로 진입합니다.</div>
+
+<div class="sep"></div>
+
+<p style="font-size:13px;font-weight:700;color:var(--text);margin:0 0 10px">인생 흐름 총정리</p>
+<div class="steps-flow">
+  <div class="step-item act2">
+    <div class="step-n g">1</div>
+    <div><div class="step-t">9세 己亥 대운 (2016~2025) — 자아 형성기</div>
+    <div class="step-d">재성·비겁 혼재. 돈과 환경에 민감하게 반응하며 자아를 형성하는 시기. 어린 시절 경제적 변화를 경험했을 가능성.</div></div>
+  </div>
+  <div class="step-item act">
+    <div class="step-n">2</div>
+    <div><div class="step-t">19세 戊戌 대운 (2025~2035) — 자아 극대화 · 지금 여기 ★</div>
+    <div class="step-d">일주와 동일한 복음 대운. 자아가 가장 강해지는 시기. 2026 丙午·2027 丁未 세운이 핵심 기회. 독립적 진로 결정, 학업·전문성 집중 필요.</div></div>
+  </div>
+  <div class="step-item">
+    <div class="step-n">3</div>
+    <div><div class="step-t">29세 丁酉 대운 (2035~2045) — 전성기 진입</div>
+    <div class="step-d">정인+식신. 귀인의 도움으로 재능이 세상에 나오는 시기. 사회적 인정, 전문가로 자리매김.</div></div>
+  </div>
+  <div class="step-item">
+    <div class="step-n">4</div>
+    <div><div class="step-t">39세 丙申 대운 (2045~2055) — 전성기 지속</div>
+    <div class="step-d">편인+식신. 특수 재능과 창의력 절정. 가장 활발하게 사회적 활동을 하는 중년기.</div></div>
+  </div>
+  <div class="step-item">
+    <div class="step-n">5</div>
+    <div><div class="step-t">49세~ 乙未·甲午 대운 — 명예와 관성의 시대</div>
+    <div class="step-d">관성 운이 들어오며 사회적 책임과 명예가 주어지는 시기. 乙未에 천을귀인 발동. 인성으로 완충하며 안정 유지.</div></div>
+  </div>
+</div>`
+  }
+];
+
+let cur = 0;
+
+function renderNav() {
+  const nav = document.getElementById('snav');
+  nav.innerHTML = '';
+  STEPS.forEach((s, i) => {
+    if (i > 0) {
+      const line = document.createElement('div');
+      line.className = 'step-line' + (i <= cur ? ' done' : '');
+      nav.appendChild(line);
+    }
+    const dot = document.createElement('div');
+    const isB = s.isBreak;
+    let label;
+    if (isB) label = '☕';
+    else if (i === 0) label = '1';
+    else if (i === 1) label = '2';
+    else if (i === 2) label = '✦';
+    else if (i <= 6) label = i;
+    else if (i === 7) label = '日';
+    else if (i === 8) label = '殺';
+    else if (i === 9) label = '用';
+    else label = '運';
+    dot.className = 'step-dot' + (isB ? ' break-dot' : '') + (i === cur ? ' active' : i < cur ? ' done' : '');
+    dot.textContent = label;
+    dot.title = s.title;
+    dot.onclick = () => go(i);
+    nav.appendChild(dot);
+  });
+  document.getElementById('pbar').style.width = ((cur + 1) / STEPS.length * 100) + '%';
+}
+
+function renderPanel() {
+  const s = STEPS[cur];
+  const tagMap = {
+    basic: ['기초', 'tag-basic'],
+    mid: ['중급', 'tag-mid'],
+    adv: ['심화', 'tag-adv'],
+    brk: ['쉬어가기', 'tag-brk']
+  };
+  const [tl, tc] = tagMap[s.tag];
+  let numLabel;
+  if (s.isBreak) numLabel = '☕';
+  else if (cur === 0) numLabel = '1';
+  else if (cur === 1) numLabel = '2';
+  else if (cur === 2) numLabel = '✦';
+  else if (cur <= 6) numLabel = cur;
+  else if (cur === 7) numLabel = '日';
+  else if (cur === 8) numLabel = '殺';
+  else if (cur === 9) numLabel = '用';
+  else numLabel = '運';
+
+  const nc = s.isBreak ? 'panel-num brk' : 'panel-num';
+  const prevLabel = cur === 0 ? '← 이전' : '← 이전';
+  const nextLabel = cur === STEPS.length - 1 ? '완료 ✓' : '다음 단계 →';
+
+  document.getElementById('panel').innerHTML = `
+    <div class="panel-header">
+      <div class="${nc}">${numLabel}</div>
+      <div>
+        <div class="panel-title">${s.title} <span class="tag ${tc}">${tl}</span></div>
+        <div class="panel-sub">${s.sub}</div>
+      </div>
+    </div>
+    <div>${s.html}</div>
+    <div class="nav-row">
+      <button class="btn" onclick="go(${cur-1})" ${cur===0?'disabled':''}>${prevLabel}</button>
+      <button class="btn btn-primary" onclick="go(${cur+1})" ${cur===STEPS.length-1?'disabled':''}>${nextLabel}</button>
+    </div>`;
+
+  document.querySelectorAll('.pillar').forEach(p => p.classList.remove('active','active2'));
+  s.focus.forEach(i => {
+    const p = document.querySelector(`.pillar[data-idx="${i}"]`);
+    if (p) p.classList.add(i === 2 ? 'active' : 'active2');
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function go(i) {
+  if (i < 0 || i >= STEPS.length) return;
+  cur = i;
+  renderNav();
+  renderPanel();
+}
+
+function selP(i) {
+  // 2(일주)→0(1단계), 1(월주)→1(2단계), 0(년주)→6(7단계), 3(시주)→4(4단계)
+  const m = { 2: 0, 1: 1, 0: 6, 3: 4 };
+  go(m[i] ?? 0);
+}
+
+go(0);
+</script>
+</body>
+</html>
