@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>사주풀이</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Serif KR', 'Malgun Gothic', serif;
+      background: #1a0a00;
+      color: #f5e6c8;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      letter-spacing: 0.15em;
+      color: #f0c060;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #c8a86a;
+      margin-bottom: 40px;
+      letter-spacing: 0.1em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: linear-gradient(135deg, #2d1200 0%, #1a0a00 100%);
+      border: 1px solid #6b3a10;
+      border-radius: 12px;
+      padding: 24px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(200, 100, 0, 0.25);
+    }
+
+    .card-name {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #f0c060;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #6b3a10;
+    }
+
+    .link-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .link-list li a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #e8d5a8;
+      font-size: 0.92rem;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.04);
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .link-list li a:hover {
+      background: rgba(240, 192, 96, 0.15);
+      color: #f0c060;
+    }
+
+    .link-list li a.disabled {
+      color: #6b5a3a;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🔮 사주풀이</h1>
+  <p class="subtitle">음양오행 · 단계별 · 전체 사주 분석</p>
+
+  <div class="grid">
+
+    <!-- 임진권 -->
+    <div class="card">
+      <div class="card-name">임진권</div>
+      <ul class="link-list">
+        <li><a href="jinkwon_balance.html"><span class="icon">☯️</span> 음양오행 풀이</a></li>
+        <li><a href="jinkwon_step.html"><span class="icon">📋</span> 단계별 사주풀이</a></li>
+        <li><a href="jinkwon_saju_report.html"><span class="icon">📜</span> 전체 사주풀이</a></li>
+      </ul>
+    </div>
+
+    <!-- 임현진 -->
+    <div class="card">
+      <div class="card-name">임현진</div>
+      <ul class="link-list">
+        <li><a href="hyunjin/hyunjin_balance.html"><span class="icon">☯️</span> 음양오행 풀이</a></li>
+        <li><a href="hyunjin/hyunjin_step.html"><span class="icon">📋</span> 단계별 사주풀이</a></li>
+        <li><a href="#" class="disabled"><span class="icon">📜</span> 전체 사주풀이 (준비중)</a></li>
+      </ul>
+    </div>
+
+    <!-- 임수정 -->
+    <div class="card">
+      <div class="card-name">임수정</div>
+      <ul class="link-list">
+        <li><a href="sujung/sujung_balance.html"><span class="icon">☯️</span> 음양오행 풀이</a></li>
+        <li><a href="sujung_step.html"><span class="icon">📋</span> 단계별 사주풀이</a></li>
+        <li><a href="#" class="disabled"><span class="icon">📜</span> 전체 사주풀이 (준비중)</a></li>
+      </ul>
+    </div>
+
+    <!-- 강다인 -->
+    <div class="card">
+      <div class="card-name">강다인</div>
+      <ul class="link-list">
+        <li><a href="dain/dain_balance.html"><span class="icon">☯️</span> 음양오행 풀이</a></li>
+        <li><a href="dain/dain_step.html"><span class="icon">📋</span> 단계별 사주풀이</a></li>
+        <li><a href="#" class="disabled"><span class="icon">📜</span> 전체 사주풀이 (준비중)</a></li>
+      </ul>
+    </div>
+
+    <!-- 박찬수 -->
+    <div class="card">
+      <div class="card-name">박찬수</div>
+      <ul class="link-list">
+        <li><a href="chansu/chansu_balance.html"><span class="icon">☯️</span> 음양오행 풀이</a></li>
+        <li><a href="chansu_step.html"><span class="icon">📋</span> 단계별 사주풀이</a></li>
+        <li><a href="#" class="disabled"><span class="icon">📜</span> 전체 사주풀이 (준비중)</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+</body>
+</html>
