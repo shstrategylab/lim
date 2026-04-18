@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>임현진 — 음양오행 사주 분석 & 소품 추천</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --wood: #2D6A4F;
+    --wood-light: #D8F3DC;
+    --fire: #C0392B;
+    --fire-light: #FDECEA;
+    --earth: #B7791F;
+    --earth-light: #FEFCE8;
+    --metal: #7D6B5A;
+    --metal-light: #F5F0EB;
+    --water: #1A4F72;
+    --water-light: #EBF5FB;
+    --gold: #C9A84C;
+    --cream: #FAF7F2;
+    --ink: #1C1C1C;
+    --ink2: #4A4A4A;
+    --ink3: #7A7A7A;
+    --border: #E8E0D5;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(160deg, #1C1C1C 0%, #2D2D2D 50%, #3A2A1A 100%);
+    color: #FAF7F2;
+    padding: 60px 40px 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '辛';
+    position: absolute;
+    right: -20px; top: -30px;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 260px;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .hero-tag {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .hero-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 6px;
+  }
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 32px;
+  }
+  .pillars-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    max-width: 480px;
+  }
+  .pillar-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+  .pillar-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .pillar-gan {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 26px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .pillar-ji {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 26px;
+    font-weight: 700;
+    display: block;
+  }
+  .c-wood { color: #74C69D; }
+  .c-fire { color: #F87171; }
+  .c-earth { color: #FCD34D; }
+  .c-metal { color: #D4C5B0; }
+  .c-water { color: #93C5FD; }
+
+  /* SECTION */
+  .section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .section-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: #FAF7F2;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-family: 'Noto Serif KR', serif;
+  }
+  .section-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .section-desc {
+    font-size: 13px;
+    color: var(--ink3);
+    margin-top: 2px;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+  }
+
+  /* OHAENG CHART */
+  .ohaeng-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .oh-card {
+    border-radius: 12px;
+    padding: 18px 12px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .oh-char {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 32px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .oh-name {
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--ink3);
+    margin-bottom: 12px;
+  }
+  .oh-bar-wrap {
+    background: rgba(0,0,0,0.08);
+    border-radius: 4px;
+    height: 6px;
+    margin-bottom: 8px;
+  }
+  .oh-bar {
+    height: 6px;
+    border-radius: 4px;
+  }
+  .oh-score {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Noto Serif KR', serif;
+  }
+  .oh-badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+  .badge-weak { background: #FEE2E2; color: #991B1B; }
+  .badge-normal { background: #F3F4F6; color: #6B7280; }
+  .badge-strong { background: #D1FAE5; color: #065F46; }
+  .badge-empty { background: #FEE2E2; color: #7F1D1D; }
+
+  .oh-wood { background: var(--wood-light); }
+  .oh-wood .oh-char { color: var(--wood); }
+  .oh-wood .oh-bar { background: var(--wood); }
+  .oh-wood .oh-score { color: var(--wood); }
+
+  .oh-fire { background: var(--fire-light); }
+  .oh-fire .oh-char { color: var(--fire); }
+  .oh-fire .oh-bar { background: var(--fire); }
+  .oh-fire .oh-score { color: var(--fire); }
+
+  .oh-earth { background: var(--earth-light); }
+  .oh-earth .oh-char { color: var(--earth); }
+  .oh-earth .oh-bar { background: var(--earth); }
+  .oh-earth .oh-score { color: var(--earth); }
+
+  .oh-metal { background: var(--metal-light); }
+  .oh-metal .oh-char { color: var(--metal); }
+  .oh-metal .oh-bar { background: var(--metal); }
+  .oh-metal .oh-score { color: var(--metal); }
+
+  .oh-water { background: var(--water-light); }
+  .oh-water .oh-char { color: var(--water); }
+  .oh-water .oh-bar { background: var(--water); }
+  .oh-water .oh-score { color: var(--water); }
+
+  /* ANALYSIS CARDS */
+  .analysis-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .ana-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .ana-card-title {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--ink3);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .ana-card-body {
+    font-size: 14px;
+    color: var(--ink2);
+    line-height: 1.8;
+  }
+  .ana-card-body strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* SUMMARY BOX */
+  .summary-box {
+    background: #1C1C1C;
+    color: #FAF7F2;
+    border-radius: 14px;
+    padding: 28px 28px;
+    margin-bottom: 12px;
+  }
+  .summary-box h3 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 14px;
+    letter-spacing: 1px;
+  }
+  .keyword-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .chip {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .chip-strong { background: rgba(116,198,157,0.2); color: #74C69D; border: 1px solid rgba(116,198,157,0.3); }
+  .chip-weak { background: rgba(248,113,113,0.2); color: #FCA5A5; border: 1px solid rgba(248,113,113,0.3); }
+  .chip-key { background: rgba(201,168,76,0.2); color: var(--gold); border: 1px solid rgba(201,168,76,0.3); }
+  .summary-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.9;
+  }
+
+  /* PRODUCT CARDS */
+  .product-section-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .product-card {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: white;
+  }
+  .product-header {
+    padding: 20px 18px 14px;
+  }
+  .product-type {
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    opacity: 0.65;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .product-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .product-ohaeng {
+    font-size: 12px;
+    opacity: 0.7;
+  }
+  .product-body {
+    padding: 16px 18px 20px;
+    background: white;
+  }
+  .product-row {
+    display: flex;
+    margin-bottom: 10px;
+    font-size: 13px;
+    gap: 10px;
+  }
+  .product-row-label {
+    color: var(--ink3);
+    min-width: 52px;
+    font-size: 12px;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .product-row-val {
+    color: var(--ink2);
+    line-height: 1.6;
+  }
+  .beads {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin: 12px 0;
+  }
+  .bead {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px;
+    color: white;
+    font-weight: 500;
+    border: 1.5px solid rgba(0,0,0,0.08);
+  }
+  .bead-wood { background: #2D6A4F; }
+  .bead-fire { background: #C0392B; }
+  .bead-earth { background: #B7791F; }
+  .bead-metal { background: #8B8570; }
+  .bead-water { background: #1A4F72; }
+  .bead-gold { background: var(--gold); }
+  .bead-clear { background: #A8D8EA; }
+  .bead-white { background: #E8E0D5; border-color: #CCC; }
+
+  .evidence-box {
+    background: #F9F6F0;
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--ink2);
+    line-height: 1.7;
+    margin-top: 12px;
+  }
+  .evidence-box strong {
+    color: var(--ink);
+    font-size: 11px;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+
+  /* DAEWOON */
+  .daewoon-banner {
+    border-radius: 14px;
+    padding: 24px 24px;
+    margin-bottom: 20px;
+    border: 1px solid;
+  }
+  .dw-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .dw-subtitle {
+    font-size: 12px;
+    color: var(--ink3);
+    margin-bottom: 14px;
+  }
+  .dw-body {
+    font-size: 14px;
+    color: var(--ink2);
+    line-height: 1.9;
+  }
+
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 20px;
+    margin-bottom: 16px;
+    align-items: start;
+  }
+  .timeline-label {
+    text-align: right;
+    padding-top: 3px;
+  }
+  .timeline-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .tl-unit {
+    font-size: 10px;
+    color: var(--ink3);
+  }
+  .timeline-content {
+    font-size: 13px;
+    color: var(--ink2);
+    line-height: 1.8;
+    padding-top: 2px;
+  }
+
+  /* PACKAGE */
+  .package-box {
+    background: linear-gradient(135deg, #1C1C1C, #2A1A3A);
+    border-radius: 16px;
+    padding: 32px 28px;
+    color: #FAF7F2;
+    position: relative;
+    overflow: hidden;
+  }
+  .package-box::after {
+    content: '☯';
+    position: absolute;
+    right: 20px; bottom: -20px;
+    font-size: 140px;
+    opacity: 0.05;
+  }
+  .package-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .package-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 28px;
+  }
+  .pkg-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .pkg-item {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .pkg-item-layer {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .pkg-item-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .pkg-item-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+  }
+  .pkg-beads {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .pkg-harmony {
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.8;
+  }
+  .pkg-harmony strong {
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* WATER ALERT */
+  .alert-box {
+    background: linear-gradient(135deg, #0F2942, #1A4F72);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    color: #EBF5FB;
+  }
+  .alert-box h4 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px;
+    color: #93C5FD;
+    margin-bottom: 8px;
+  }
+  .alert-box p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(235,245,251,0.8);
+  }
+
+  /* FOOTER */
+  .footer {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 20px 24px 48px;
+    font-size: 12px;
+    color: var(--ink3);
+    line-height: 1.8;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 640px) {
+    .pillars-row { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .ohaeng-grid { grid-template-columns: repeat(5, 1fr); gap: 8px; }
+    .analysis-grid { grid-template-columns: 1fr; }
+    .product-grid { grid-template-columns: 1fr; }
+    .pkg-items { grid-template-columns: 1fr; }
+    .hero { padding: 40px 20px 36px; }
+    .section { padding: 36px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">음양오행 사주 분석 리포트</div>
+  <div class="hero-name">임 현 진</div>
+  <div class="hero-sub">(양) 2004년 02월 22일 20시 30분 · 전통나이 23세 (2026년 기준)</div>
+  <div class="pillars-row">
+    <div class="pillar-card">
+      <div class="pillar-label">시 주</div>
+      <span class="pillar-gan c-earth">戊</span>
+      <span class="pillar-ji c-earth">戌</span>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-label">일 주</div>
+      <span class="pillar-gan c-metal">辛</span>
+      <span class="pillar-ji c-earth">未</span>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-label">월 주</div>
+      <span class="pillar-gan c-fire">丙</span>
+      <span class="pillar-ji c-wood">寅</span>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-label">년 주</div>
+      <span class="pillar-gan c-wood">甲</span>
+      <span class="pillar-ji c-metal">申</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 1 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">一</div>
+    <div>
+      <div class="section-title">사주팔자 분석</div>
+      <div class="section-desc">천간·지지 오행 분포 및 일간 중심 해석</div>
+    </div>
+  </div>
+
+  <!-- 오행 차트 -->
+  <div class="ohaeng-grid">
+    <div class="oh-card oh-wood">
+      <span class="oh-char">木</span>
+      <div class="oh-name">목 (나무)</div>
+      <div class="oh-bar-wrap"><div class="oh-bar" style="width:50%"></div></div>
+      <div class="oh-score">5.0</div>
+      <span class="oh-badge badge-normal">보통</span>
+    </div>
+    <div class="oh-card oh-fire">
+      <span class="oh-char">火</span>
+      <div class="oh-name">화 (불)</div>
+      <div class="oh-bar-wrap"><div class="oh-bar" style="width:25%"></div></div>
+      <div class="oh-score">2.5</div>
+      <span class="oh-badge badge-weak">약(弱)</span>
+    </div>
+    <div class="oh-card oh-earth">
+      <span class="oh-char">土</span>
+      <div class="oh-name">토 (흙)</div>
+      <div class="oh-bar-wrap"><div class="oh-bar" style="width:65%"></div></div>
+      <div class="oh-score">6.5</div>
+      <span class="oh-badge badge-normal">보통</span>
+    </div>
+    <div class="oh-card oh-metal">
+      <span class="oh-char">金</span>
+      <div class="oh-name">금 (쇠)</div>
+      <div class="oh-bar-wrap"><div class="oh-bar" style="width:55%"></div></div>
+      <div class="oh-score">5.5</div>
+      <span class="oh-badge badge-normal">보통</span>
+    </div>
+    <div class="oh-card oh-water">
+      <span class="oh-char">水</span>
+      <div class="oh-name">수 (물)</div>
+      <div class="oh-bar-wrap"><div class="oh-bar" style="width:5%"></div></div>
+      <div class="oh-score">0</div>
+      <span class="oh-badge badge-empty">결핍(缺)</span>
+    </div>
+  </div>
+
+  <!-- 분석 카드들 -->
+  <div class="analysis-grid">
+    <div class="ana-card">
+      <div class="ana-card-title">일간 해석 — 辛金</div>
+      <div class="ana-card-body">
+        <strong>辛金(신금)</strong>은 가을에 제련된 보석, 칼날과 같은 예리함을 지닌 음(陰)의 금(金) 기운입니다. 섬세하고 <strong>완벽주의적이며, 미적 감각과 분석력</strong>이 탁월합니다. 외유내강(外柔內剛)의 성품으로 겉은 부드럽지만 내면에 강한 주관과 의지가 있습니다. 다만 예민함으로 인해 상처를 잘 받고, 지나친 완벽주의가 스스로를 힘들게 하는 경향이 있습니다.
+      </div>
+    </div>
+    <div class="ana-card">
+      <div class="ana-card-title">월지 해석 — 寅木 (장생)</div>
+      <div class="ana-card-body">
+        <strong>寅木(인목)</strong>은 봄의 시작, 정관(正官)이 월지에 있어 <strong>원칙·규범·책임감</strong>을 중시하는 성향입니다. 辛金에게 甲木(정재)과 丙火(정관)이 함께 월주에 있으니 이른 나이부터 <strong>사회적 책임과 경제적 자립</strong>에 대한 의식이 강하게 발달합니다. 사람들에게 신뢰받고자 하는 마음이 큽니다.
+      </div>
+    </div>
+    <div class="ana-card">
+      <div class="ana-card-title">일지 해석 — 未土 (쇠)</div>
+      <div class="ana-card-body">
+        <strong>未土(미토)</strong>는 여름 끝의 무더운 흙, 정인(正印)이 일지에 있어 <strong>내면의 지혜·학문·감수성</strong>이 풍부합니다. 丁火 편관과 乙木 편재, 己土 편인을 지장간으로 품어 복잡한 내면 세계를 가지고 있습니다. 감정을 깊이 느끼지만 표현하는 데 시간이 걸리는 편입니다.
+      </div>
+    </div>
+    <div class="ana-card">
+      <div class="ana-card-title">시주 해석 — 戊戌 (정인)</div>
+      <div class="ana-card-body">
+        <strong>戊戌(무술)</strong>은 넓고 든든한 산의 기운으로, 정인(正印)이 시주에 자리합니다. <strong>말년과 성취의 기운이 매우 안정적</strong>이며, 꾸준한 노력이 큰 결실로 이어지는 구조입니다. 辛金을 戊土가 생(生)해주어 삶의 후반부로 갈수록 지지 기반이 탄탄해지는 흐름입니다. 학문과 지식으로 이루는 결실이 기대됩니다.
+      </div>
+    </div>
+    <div class="ana-card">
+      <div class="ana-card-title">년주 해석 — 甲申 (제왕)</div>
+      <div class="ana-card-body">
+        <strong>甲申(갑신)</strong>은 강한 나무가 쇠 위에 서있는 형상으로, 정재(正財)가 년주에 있어 <strong>경제적 감각·현실적 판단력</strong>이 초년부터 발달해 있습니다. 申金이 검재(劫財)로 작용해 또래 관계에서 경쟁심이 생기기도 하지만, 甲木 정재의 기운이 목표 지향성과 재물 감각을 높여줍니다.
+      </div>
+    </div>
+    <div class="ana-card">
+      <div class="ana-card-title">음양 균형 분석</div>
+      <div class="ana-card-body">
+        천간: 戊(양) · 辛(음) · 丙(양) · 甲(양) → <strong>양 3개 / 음 1개 (양 과다)</strong><br>
+        지지: 戌(양) · 未(음) · 寅(양) · 申(양) → <strong>양 3개 / 음 1개 (양 과다)</strong><br>
+        전체적으로 <strong>양(陽) 기운이 6:2로 과다</strong>한 구조이며, 水 기운이 완전히 결핍되어 있습니다. 음(陰)의 부드러움·수렴·휴식 에너지 보완이 절실합니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- 水 결핍 경고 -->
+  <div class="alert-box">
+    <h4>⚠ 특별 진단 — 水(수) 기운 완전 결핍</h4>
+    <p>
+      임현진 님의 사주에는 <strong>水(수) 기운이 0점</strong>으로 팔자에 완전히 없습니다. 水는 智(지혜)·감정의 깊이·유연성·지속력·휴식의 기운입니다. 水의 결핍은 때때로 일을 강하게 밀어붙이다 번아웃이 오거나, 감정을 흘려보내지 못하고 마음속에 쌓아두는 패턴, 끈기와 회복탄력성이 약해지는 형태로 나타납니다. 이 부분에 대한 의식적인 보완이 인생 전반에 걸쳐 매우 중요합니다.
+    </p>
+  </div>
+
+  <div class="summary-box">
+    <h3>✦ 종합 사주 풀이</h3>
+    <p class="summary-text">
+      辛金 일간이 未土의 학문적 깊이를 뿌리 삼아, 丙火 정관의 원칙과 사회적 감각을 품고, 戊土 정인의 든든한 배경 위에 서있는 구조입니다. 土·金·木이 고루 있어 현실 감각·섬세함·추진력은 갖추었으나, 水(유연성·감정 소화·지속력)가 완전히 없고, 火(열정·사교성·표현력)가 부족합니다. 보석처럼 정교하게 갈고닦는 辛金의 본성대로, 꾸준한 자기 계발과 수련이 인생의 핵심 키워드입니다. 水의 보완이 이 사주의 가장 중요한 처방입니다.
+    </p>
+    <div class="keyword-chips">
+      <span class="chip chip-strong">강점: 섬세함·완벽주의</span>
+      <span class="chip chip-strong">강점: 현실 감각·재물운</span>
+      <span class="chip chip-weak">결핍: 수(水) 유연성 전무</span>
+      <span class="chip chip-weak">보완: 화(火) 표현력 부족</span>
+      <span class="chip chip-key">키워드: 연마</span>
+      <span class="chip chip-key">키워드: 신뢰</span>
+      <span class="chip chip-key">키워드: 성장</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 2 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">二</div>
+    <div>
+      <div class="section-title">부족 기운 진단 & 평생 기준 소품</div>
+      <div class="section-desc">인생 전체 오행 균형 처방 — 핵심 보완 소품</div>
+    </div>
+  </div>
+
+  <div class="analysis-grid" style="margin-bottom:28px;">
+    <div class="ana-card">
+      <div class="ana-card-title">핵심 결핍 기운 — 水(수)</div>
+      <div class="ana-card-body">
+        수(水)의 결핍은 <strong>유연성·지혜·감정 소화력·회복탄력성</strong>이 약함을 의미합니다. 한번 충격을 받으면 회복하는 데 오래 걸리고, 감정을 흘려보내지 못하며, 무리하게 밀어붙이다 번아웃이 오는 경향이 있습니다. 잠(睡眠)과 쉬는 것에 어색함을 느끼고, <strong>"멈추면 뒤처질 것 같은"</strong> 두려움이 수(水) 결핍에서 비롯됩니다.
+      </div>
+    </div>
+    <div class="ana-card">
+      <div class="ana-card-title">보완 필요 기운 — 火(화)</div>
+      <div class="ana-card-body">
+        화(火)의 부족은 <strong>자기표현·사교성·열정의 외부 발산</strong>이 약함을 뜻합니다. 辛金은 내면에 단단한 세계를 가지고 있지만 이를 밖으로 드러내는 것이 어렵게 느껴질 수 있습니다. 또한 火는 辛金의 정관(正官)으로 사회적 성취와 인정의 기운이기도 하여, <strong>자신의 능력을 세상에 알리는 힘</strong>을 보완해 줍니다.
+      </div>
+    </div>
+  </div>
+
+  <div class="product-section-title">💧 平生 기준 소품 추천 — 水·火 기운 보완</div>
+
+  <div class="product-grid">
+
+    <!-- 소품1: 팔찌 - 水 -->
+    <div class="product-card">
+      <div class="product-header" style="background: linear-gradient(135deg, #0F2942, #1A4F72); color:white;">
+        <div class="product-type">팔찌 · BRACELET</div>
+        <div class="product-name">청흑 수정 팔찌</div>
+        <div class="product-ohaeng">水 기운 보완 · 유연성·지혜 활성</div>
+      </div>
+      <div class="product-body">
+        <div class="product-row">
+          <span class="product-row-label">주 색상</span>
+          <span class="product-row-val">흑색(黑色) + 청색 보조색</span>
+        </div>
+        <div class="product-row">
+          <span class="product-row-label">재 질</span>
+          <span class="product-row-val">흑수정(黑水晶) 또는 라피스 라줄리</span>
+        </div>
+        <div class="product-row">
+          <span class="product-row-label">구슬 배합</span>
+          <span class="product-row-val"></span>
+        </div>
+        <div class="beads">
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-metal">金</div>
+          <div class="bead bead-metal">金</div>
+          <div class="bead bead-gold">✦</div>
+        </div>
+        <div class="product-row" style="margin-top:8px;">
+          <span class="product-row-label">착용</span>
+          <span class="product-row-val">왼손 착용 권장 (수기 수렴)</span>
+        </div>
+        <div class="evidence-box">
+          <strong>⊕ 오행 근거</strong>
+          흑색은 오행 수(水)의 정색으로, 신장·방광·지혜·북쪽·겨울을 상징합니다. 흑수정은 음(陰)의 기운을 담아 과도하게 활성화된 양(陽) 에너지를 안정시키며, 金生水의 원리에 따라 辛金 일간에 金 구슬을 보조로 넣어 水 기운 생성을 도와줍니다.
+        </div>
+      </div>
+    </div>
+
+    <!-- 소품2: 목걸이 - 火 -->
+    <div class="product-card">
+      <div class="product-header" style="background: linear-gradient(135deg, #7B2D2D, #C0392B); color:white;">
+        <div class="product-type">목걸이 · NECKLACE</div>
+        <div class="product-name">적홍 가넷 목걸이</div>
+        <div class="product-ohaeng">火 기운 보완 · 표현력·정관 강화</div>
+      </div>
+      <div class="product-body">
+        <div class="product-row">
+          <span class="product-row-label">주 색상</span>
+          <span class="product-row-val">적색(赤色) + 자주색 보조색</span>
+        </div>
+        <div class="product-row">
+          <span class="product-row-label">재 질</span>
+          <span class="product-row-val">천연 가넷(석류석) 또는 홍석류</span>
+        </div>
+        <div class="product-row">
+          <span class="product-row-label">구슬 배합</span>
+          <span class="product-row-val"></span>
+        </div>
+        <div class="beads">
+          <div class="bead bead-fire">火</div>
+          <div class="bead bead-fire">火</div>
+          <div class="bead bead-fire">火</div>
+          <div class="bead bead-wood">木</div>
+          <div class="bead bead-wood">木</div>
+          <div class="bead bead-earth">土</div>
+          <div class="bead bead-gold">✦</div>
+        </div>
+        <div class="product-row" style="margin-top:8px;">
+          <span class="product-row-label">착용</span>
+          <span class="product-row-val">가슴 위치 착용 (정관·표현 활성)</span>
+        </div>
+        <div class="evidence-box">
+          <strong>⊕ 오행 근거</strong>
+          적색은 화(火)의 정색이며, 辛金에게 丙火는 정관(正官)으로 사회적 성취·인정·리더십의 기운입니다. 가넷은 열정·자신감·대인 매력을 활성화하는 붉은 보석으로, 木生火의 흐름으로 木 구슬을 보조하여 火 기운 생성을 돕습니다.
+        </div>
+      </div>
+    </div>
+
+    <!-- 소품3: 키링 -->
+    <div class="product-card">
+      <div class="product-header" style="background: linear-gradient(135deg, #2C3E50, #34495E); color:white;">
+        <div class="product-type">키링 · KEYRING</div>
+        <div class="product-name">오색 균형 키링</div>
+        <div class="product-ohaeng">水 집중 + 전체 균형 · 상시 휴대</div>
+      </div>
+      <div class="product-body">
+        <div class="product-row">
+          <span class="product-row-label">구슬 배합</span>
+          <span class="product-row-val">水 집중 오색 배열</span>
+        </div>
+        <div class="beads">
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-fire">火</div>
+          <div class="bead bead-earth">土</div>
+          <div class="bead bead-metal">金</div>
+          <div class="bead bead-wood">木</div>
+          <div class="bead bead-water">水</div>
+        </div>
+        <div class="product-row" style="margin-top:8px;">
+          <span class="product-row-label">재 질</span>
+          <span class="product-row-val">오색 천연석 혼합 + 은색 연결고리</span>
+        </div>
+        <div class="product-row">
+          <span class="product-row-label">사용처</span>
+          <span class="product-row-val">가방 또는 지갑 — 항상 소지</span>
+        </div>
+        <div class="evidence-box">
+          <strong>⊕ 오행 근거</strong>
+          水가 완전히 결핍된 사주에서, 몸 곁에 흑색·청색 구슬을 가장 많이 배치하여 상시 水 기운을 보완합니다. 오행 전체 색이 함께 있어 우주 기운의 총합을 유지하면서, 결핍된 水에 가중치를 두는 전략적 배합입니다.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 3 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">三</div>
+    <div>
+      <div class="section-title">대운·세운 기운 분석 (2026년 기준)</div>
+      <div class="section-desc">현재 대운 甲子 (16세 식신) + 2026년 세운 丙午</div>
+    </div>
+  </div>
+
+  <!-- 대운 배너 -->
+  <div class="daewoon-banner" style="background:#F0FDF4; border-color:#86EFAC;">
+    <div class="dw-title" style="color:#166534;">🌱 현재 대운 — 甲子 (16~25세 · 식신 대운)</div>
+    <div class="dw-subtitle" style="color:#4B5563;">2021년 시작 · 木과 水가 만나 큰 성장이 펼쳐지는 10년</div>
+    <div class="dw-body">
+      辛金 일간에게 甲子 대운은 <strong>甲木 정재(正財)와 子水 식신(食神)</strong>이 들어오는 시기입니다. 정재(正財)는 꾸준한 노력으로 쌓는 재물과 성과를 의미하며, <strong>학업·자격·실력 쌓기에 최적의 10년</strong>입니다. 특히 사주에서 완전히 없던 <strong>子水가 대운으로 들어와 水 결핍이 일시적으로 해소</strong>됩니다. 감수성·지혜·유연성이 열리고, 자기 자신을 깊이 이해하는 시기입니다. 다만 甲木이 들어오면서 木生火 흐름으로 火 기운도 강화되어 과욕·조급함을 경계해야 합니다.
+    </div>
+  </div>
+
+  <div class="timeline-row" style="margin-bottom:24px;">
+    <div class="timeline-label">
+      <span class="timeline-badge" style="background:#D1FAE5;color:#065F46;">대운 합산</span>
+      <div class="tl-unit">10년 기준</div>
+    </div>
+    <div class="timeline-content">
+      타고난 사주 오행(木5·火2.5·土6.5·金5.5·水0) + 대운 甲子(木+1.5, 水+1) 합산 시<br>
+      → <strong style="color:var(--water)">水 +1.0점</strong>(결핍 부분 해소) · <strong style="color:var(--wood)">木 6.5점</strong>(강화) · <strong style="color:var(--earth)">土 6.5점</strong>(유지)<br>
+      이 10년은 "씨앗이 물을 만나 싹을 틔우는" 성장과 자기발견의 시기입니다.
+    </div>
+  </div>
+
+  <!-- 세운 배너 -->
+  <div class="daewoon-banner" style="background:#FFF5F5; border-color:#FCA5A5;">
+    <div class="dw-title" style="color:#991B1B;">🔥 2026년 세운 — 丙午年 (23세 · 정관)</div>
+    <div class="dw-subtitle" style="color:#B45309;">丙午 = 하늘의 태양 + 땅의 불꽃 · 火 기운 최고조 · 辛金의 정관년</div>
+    <div class="dw-body" style="color:#78350F;">
+      2026년 丙午(병오)년은 辛金에게 <strong>丙火가 정관(正官)으로 작용</strong>하는 해입니다. 사회적 인정·평가·기회가 크게 열리며, 중요한 시험·취업·승인의 해가 될 수 있습니다. 그러나 午火의 강한 불기운이 대운의 子水와 <strong>子午 충(沖)</strong>을 일으켜 감정 기복과 불안정이 찾아올 수 있습니다. 또한 불이 辛金을 지나치게 달구면 예민함·신경과민이 심해질 수 있습니다. <strong>水 기운 보완과 마음의 안정이 이 해의 핵심 처방</strong>입니다.
+    </div>
+  </div>
+
+  <div class="timeline-row" style="margin-bottom:24px; margin-top:8px;">
+    <div class="timeline-label">
+      <span class="timeline-badge" style="background:#FEE2E2;color:#991B1B;">세운 합산</span>
+      <div class="tl-unit">2026년</div>
+    </div>
+    <div class="timeline-content">
+      사주 + 대운(甲子) + 세운(丙午) 3중 합산:<br>
+      → <strong style="color:var(--fire)">火 최고조(5점 이상)</strong> · 木 강함 · <strong style="color:var(--water)">水 子午 충으로 불안정</strong> · 土·金 유지<br>
+      <span style="color:var(--ink3); font-size:12px;">상반기(1~6월): 丙午 화기 최대 → 기회의 시기, 과욕 경계 | 하반기: 戊戌 대운 관련 안정 기운 회복</span>
+    </div>
+  </div>
+
+  <div class="product-section-title">⚡ 대운·세운 맞춤 소품 추천</div>
+
+  <div class="product-grid">
+
+    <!-- 대운 소품1 -->
+    <div class="product-card">
+      <div class="product-header" style="background: linear-gradient(135deg, #0F2942, #1A4F72); color:white;">
+        <div class="product-type">대운 맞춤 · 10년</div>
+        <div class="product-name">청수 아쿠아마린 팔찌</div>
+        <div class="product-ohaeng">甲子 대운 水 기운 강화 · 식신 활성</div>
+      </div>
+      <div class="product-body">
+        <div class="product-row">
+          <span class="product-row-label">주 색상</span>
+          <span class="product-row-val">청색 + 청록 보조색</span>
+        </div>
+        <div class="product-row">
+          <span class="product-row-label">재 질</span>
+          <span class="product-row-val">아쿠아마린 또는 청금석(靑金石)</span>
+        </div>
+        <div class="beads">
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-metal">金</div>
+          <div class="bead bead-metal">金</div>
+          <div class="bead bead-wood">木</div>
+          <div class="bead bead-gold">✦</div>
+        </div>
+        <div class="product-row" style="margin-top:8px;">
+          <span class="product-row-label">착용</span>
+          <span class="product-row-val">왼손 착용 · 공부·시험 시 필착</span>
+        </div>
+        <div class="evidence-box">
+          <strong>⊕ 오행 근거</strong>
+          甲子 대운에 들어온 子水(식신)의 기운을 보강합니다. 아쿠아마린은 '바다의 보석'으로 수(水) 기운의 정수이며, 학업 집중력·창의적 아이디어·감수성을 높입니다. 辛金 일간에 金 구슬을 보조하여 金生水 흐름을 극대화합니다.
+        </div>
+      </div>
+    </div>
+
+    <!-- 대운 소품2 -->
+    <div class="product-card">
+      <div class="product-header" style="background: linear-gradient(135deg, #1A3A2A, #2D6A4F); color:white;">
+        <div class="product-type">대운 맞춤 · 10년</div>
+        <div class="product-name">황토 안정 묵주패</div>
+        <div class="product-ohaeng">木 과다 조화 · 土로 중심 잡기</div>
+      </div>
+      <div class="product-body">
+        <div class="product-row">
+          <span class="product-row-label">주 색상</span>
+          <span class="product-row-val">황토색 중심 + 흑색 보조</span>
+        </div>
+        <div class="product-row">
+          <span class="product-row-label">재 질</span>
+          <span class="product-row-val">호안석(Tiger Eye) + 황토 도자기 구슬</span>
+        </div>
+        <div class="beads">
+          <div class="bead bead-earth">土</div>
+          <div class="bead bead-earth">土</div>
+          <div class="bead bead-earth">土</div>
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-metal">金</div>
+          <div class="bead bead-gold">✦</div>
+        </div>
+        <div class="product-row" style="margin-top:8px;">
+          <span class="product-row-label">사용처</span>
+          <span class="product-row-val">가방 부착 또는 책상 위 상시 비치</span>
+        </div>
+        <div class="evidence-box">
+          <strong>⊕ 오행 근거</strong>
+          甲子 대운에 木이 강해질 때, 土로 중심을 잡아 木의 과도한 팽창을 조율합니다. 호안석은 대지의 안정 에너지를 담아 충동적 결정을 막고 실용적 판단력을 더해줍니다. 水 구슬을 보조 배치하여 결핍된 수기도 함께 보완합니다.
+        </div>
+      </div>
+    </div>
+
+    <!-- 세운 소품 -->
+    <div class="product-card">
+      <div class="product-header" style="background: linear-gradient(135deg, #1C1C1C, #2D1B5A); color:white;">
+        <div class="product-type">2026년 세운 · 올해</div>
+        <div class="product-name">자수정 안정 목걸이</div>
+        <div class="product-ohaeng">子午 충 진정 · 火 과열 냉각</div>
+      </div>
+      <div class="product-body">
+        <div class="product-row">
+          <span class="product-row-label">주 색상</span>
+          <span class="product-row-val">보라색 + 흑색 보조색</span>
+        </div>
+        <div class="product-row">
+          <span class="product-row-label">재 질</span>
+          <span class="product-row-val">자수정(紫水晶) + 흑요석(黑曜石)</span>
+        </div>
+        <div class="beads">
+          <div class="bead bead-water" style="background:#6B21A8">紫</div>
+          <div class="bead bead-water" style="background:#6B21A8">紫</div>
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-metal">金</div>
+          <div class="bead bead-earth">土</div>
+          <div class="bead bead-gold">✦</div>
+        </div>
+        <div class="product-row" style="margin-top:8px;">
+          <span class="product-row-label">착용</span>
+          <span class="product-row-val">매일 착용 · 중요 일정·시험 시 필착</span>
+        </div>
+        <div class="evidence-box">
+          <strong>⊕ 오행 근거</strong>
+          2026년 丙午年은 子午 충으로 감정 기복이 생기기 쉬운 해입니다. 자수정은 水·金의 합성 기운으로 과열된 火 기운을 냉각하고 정신을 맑게 합니다. 흑요석은 접지(接地) 에너지로 흔들린 중심을 다잡고 감정의 과잉 반응을 완화시켜줍니다.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 패키지 박스 -->
+  <div class="package-box">
+    <div class="package-title">✦ 개인 맞춤 소품 패키지 — 3중 처방</div>
+    <div class="package-sub">평생 기준 · 대운(10년) · 세운(올해) 층위별 최적 구성</div>
+    <div class="pkg-items">
+      <div class="pkg-item">
+        <div class="pkg-item-layer">LAYER 1 · 평생</div>
+        <div class="pkg-item-name">청흑 수정 팔찌</div>
+        <div class="pkg-item-desc">水 결핍 보충 · 왼손 착용 · 평생 핵심 처방</div>
+        <div class="pkg-beads">
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-metal">金</div>
+          <div class="bead bead-metal">金</div>
+          <div class="bead bead-gold">✦</div>
+        </div>
+      </div>
+      <div class="pkg-item">
+        <div class="pkg-item-layer">LAYER 2 · 대운 10년</div>
+        <div class="pkg-item-name">청수 아쿠아마린 팔찌</div>
+        <div class="pkg-item-desc">甲子 대운 水·식신 강화 · 학업·성장기 필수</div>
+        <div class="pkg-beads">
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-metal">金</div>
+          <div class="bead bead-metal">金</div>
+          <div class="bead bead-wood">木</div>
+          <div class="bead bead-gold">✦</div>
+        </div>
+      </div>
+      <div class="pkg-item">
+        <div class="pkg-item-layer">LAYER 3 · 2026년</div>
+        <div class="pkg-item-name">자수정 안정 목걸이</div>
+        <div class="pkg-item-desc">子午 충 완화 · 火 진정 · 丙午年 필수 처방</div>
+        <div class="pkg-beads">
+          <div class="bead bead-water" style="background:#6B21A8">紫</div>
+          <div class="bead bead-water" style="background:#6B21A8">紫</div>
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-water">水</div>
+          <div class="bead bead-metal">金</div>
+          <div class="bead bead-earth">土</div>
+          <div class="bead bead-gold">✦</div>
+        </div>
+      </div>
+    </div>
+    <div class="pkg-harmony">
+      <strong>✦ 3종 세트의 전체 조화와 의미</strong>
+      이 세 소품은 임현진 님의 인생에서 가장 중요한 숙제인 '水 결핍'을 세 겹으로 감싸 보완합니다. 평생 팔찌(왼손)는 언제나 水 기운을 공급하는 기초 처방이고, 대운 팔찌는 이 성장기 10년간 甲子 대운의 식신 에너지를 극대화합니다. 목걸이(가슴 중앙)는 2026년 丙午年의 강한 火 기운을 냉각하고 子午 충의 불안정을 안정시킵니다. 세 가지의 주조색이 흑(水)·청(水)·자(水+金)로 이루어져, 金生水의 상생(相生) 흐름을 몸 곁에서 실현합니다. 보석처럼 정교한 辛金이 충분한 물(水)을 만나 빛나는 것처럼 — 이것이 이 소품들이 하는 역할입니다.
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  ※ 본 분석은 동양 철학의 음양오행(陰陽五行) 원리와 명리학(命理學)에 기반한 참고 자료입니다. 소품은 부족한 기운을 '보완'하는 역할로, 사용자의 심리적 안정과 긍정적 의도를 강화하는 데 도움을 줍니다. 개인의 노력과 의지가 운명을 바꾸는 가장 큰 힘임을 기억하세요. | 오색주단 오색구슬 맞춤 소품
+</div>
+
+</body>
+</html>
