@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>임진권 · 미래준비 프로젝트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #0f1117;
+  --bg2:       #161c27;
+  --bg3:       #1e2535;
+  --line:      #2a3347;
+  --gold:      #c9a84c;
+  --gold-dim:  #7a6030;
+  --green:     #4caf8a;
+  --blue:      #5b8fd4;
+  --red:       #d4695b;
+  --text:      #d4cfc5;
+  --text-dim:  #7a8499;
+  --text-faint:#3d4559;
+  --serif:     'Noto Serif KR', serif;
+  --sans:      'Noto Sans KR', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 900px; margin: 0 auto; padding: 32px 20px 60px; }
+
+/* 헤더 */
+.header {
+  border-left: 3px solid var(--gold);
+  padding: 20px 24px;
+  background: var(--bg2);
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 36px;
+}
+.header-eyebrow { font-size: 11px; letter-spacing:.15em; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
+.header-title { font-family: var(--serif); font-size: clamp(20px,4vw,28px); font-weight: 600; color: #ede8df; margin-bottom: 8px; }
+.header-meta { font-size: 13px; color: var(--text-dim); margin-bottom: 14px; }
+.header-quote { font-family: var(--serif); font-size: 14px; color: #b09a6a; line-height: 1.85; border-top: 1px solid var(--line); padding-top: 14px; }
+
+/* 섹션 */
+.sec { margin-bottom: 32px; }
+.sec-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.sec-title { font-size: 13px; font-weight: 700; letter-spacing:.08em; color: var(--gold); text-transform: uppercase; white-space: nowrap; }
+.sec-line { flex: 1; height: 1px; background: var(--line); }
+.sec-badge { font-size: 11px; background: var(--bg3); color: var(--text-dim); border: 1px solid var(--line); border-radius: 20px; padding: 2px 10px; white-space: nowrap; }
+
+/* 시간표 */
+.timeline { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+@media(max-width:640px){ .timeline { grid-template-columns: 1fr 1fr; } }
+@media(max-width:380px){ .timeline { grid-template-columns: 1fr; } }
+.tl-item { background: var(--bg2); border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
+.tl-item.cur { border-color: var(--gold); background: #1a1d10; }
+.tl-item.next { border-color: var(--green); background: #0f1a16; }
+.tl-age { font-size: 11px; color: var(--text-dim); margin-bottom: 4px; }
+.tl-item.cur .tl-age { color: var(--gold); font-weight: 600; }
+.tl-item.next .tl-age { color: var(--green); font-weight: 600; }
+.tl-name { font-family: var(--serif); font-size: 16px; font-weight: 600; color: #ede8df; margin-bottom: 2px; }
+.tl-type { font-size: 11px; color: var(--text-dim); margin-bottom: 8px; }
+.tl-desc { font-size: 12px; color: var(--text-dim); line-height: 1.6; border-top: 1px solid var(--line); padding-top: 8px; }
+
+/* 로드맵 */
+.roadmap { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+@media(max-width:640px){ .roadmap { grid-template-columns: 1fr; } }
+.phase { background: var(--bg2); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+.phase.p1 { border-top: 2px solid var(--gold); }
+.phase.p2 { border-top: 2px solid var(--green); }
+.phase.p3 { border-top: 2px solid var(--blue); }
+.phase-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.phase.p1 .phase-title { color: var(--gold); }
+.phase.p2 .phase-title { color: var(--green); }
+.phase.p3 .phase-title { color: var(--blue); }
+.phase-period { font-size: 11px; color: var(--text-dim); margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.task { display: flex; gap: 8px; font-size: 13px; color: var(--text); padding: 6px 0; border-bottom: 1px solid var(--bg3); line-height: 1.5; }
+.task:last-child { border-bottom: none; }
+.task-dot { flex-shrink: 0; margin-top: 2px; font-size: 10px; }
+.task.ok .task-dot { color: var(--green); }
+.task.hl .task-dot { color: var(--gold); }
+.task.warn .task-dot { color: var(--red); }
+.task strong { color: #ede8df; }
+
+/* 프로젝트 */
+.projects { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media(max-width:540px){ .projects { grid-template-columns: 1fr; } }
+.proj { background: var(--bg2); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+.proj-name { font-size: 14px; font-weight: 700; color: #ede8df; margin-bottom: 6px; }
+.proj-tag { display: inline-block; font-size: 11px; background: var(--bg3); color: var(--text-dim); border-radius: 20px; padding: 2px 10px; margin-bottom: 8px; }
+.proj-desc { font-size: 13px; color: var(--text-dim); line-height: 1.65; margin-bottom: 10px; }
+.status { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+.status.ing  { background: #1f1d0e; color: var(--gold);  border: 1px solid var(--gold-dim); }
+.status.plan { background: #0e1a15; color: var(--green); border: 1px solid #2a5c45; }
+.status.wait { background: #111827; color: var(--blue);  border: 1px solid #2a3f66; }
+
+/* 원칙 */
+.principles { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media(max-width:540px){ .principles { grid-template-columns: 1fr; } }
+.pcard { background: var(--bg2); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+.pcard-icon { font-size: 18px; margin-bottom: 8px; }
+.pcard-title { font-size: 13px; font-weight: 700; color: var(--blue); margin-bottom: 8px; }
+.pcard-body { font-size: 13px; color: var(--text-dim); line-height: 1.7; }
+.pcard-body strong { color: var(--text); }
+
+/* 귀인 */
+.guiin { background: #16130a; border: 1px solid var(--gold-dim); border-radius: 8px; padding: 20px 22px; }
+.guiin-title { font-family: var(--serif); font-size: 15px; font-weight: 600; color: var(--gold); margin-bottom: 12px; }
+.guiin-body { font-size: 13px; color: #a08850; line-height: 1.85; }
+.guiin-body strong { color: #d4b870; }
+
+/* 경고 */
+.warnings { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+@media(max-width:600px){ .warnings { grid-template-columns: 1fr; } }
+.wcard { border-radius: 8px; padding: 14px 16px; }
+.wcard.red  { background: #180e0e; border: 1px solid #5a2020; }
+.wcard.gold { background: #16130a; border: 1px solid var(--gold-dim); }
+.wcard.dim  { background: var(--bg2); border: 1px solid var(--line); }
+.wcard-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+.wcard.red  .wcard-title { color: var(--red); }
+.wcard.gold .wcard-title { color: var(--gold); }
+.wcard.dim  .wcard-title { color: var(--text-dim); }
+.wcard-body { font-size: 12px; line-height: 1.65; }
+.wcard.red  .wcard-body { color: #8a5050; }
+.wcard.gold .wcard-body { color: #7a6030; }
+.wcard.dim  .wcard-body { color: var(--text-faint); }
+
+/* 한 줄 */
+.oneline { background: #16130a; border: 1px solid var(--gold-dim); border-radius: 8px; padding: 24px 28px; text-align: center; margin-bottom: 12px; }
+.oneline-label { font-size: 11px; letter-spacing:.15em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 14px; }
+.oneline-text { font-family: var(--serif); font-size: clamp(13px,2.2vw,15px); color: #c0a870; line-height: 2.1; }
+.oneline-text strong { color: #e0c890; }
+
+/* 플랫폼 생태계 */
+.ecosystem { display: flex; flex-direction: column; gap: 12px; }
+.eco-flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+@media(max-width:640px){ .eco-flow { grid-template-columns: 1fr 1fr; } }
+@media(max-width:380px){ .eco-flow { grid-template-columns: 1fr; } }
+.eco-step {
+  padding: 16px 14px;
+  border-right: 1px solid var(--line);
+  position: relative;
+}
+.eco-step:last-child { border-right: none; }
+.eco-num { font-size: 10px; color: var(--text-faint); letter-spacing:.1em; margin-bottom: 6px; }
+.eco-name { font-size: 13px; font-weight: 700; color: #ede8df; margin-bottom: 6px; }
+.eco-desc { font-size: 12px; color: var(--text-dim); line-height: 1.6; }
+.eco-tag { display: inline-block; font-size: 10px; background: var(--bg3); color: var(--text-dim); border-radius: 20px; padding: 2px 8px; margin-top: 6px; }
+.eco-tag.gold { background: #1f1d0e; color: var(--gold); border: 1px solid var(--gold-dim); }
+.eco-tag.green { background: #0e1a15; color: var(--green); border: 1px solid #2a5c45; }
+.eco-tag.blue { background: #111827; color: var(--blue); border: 1px solid #2a3f66; }
+
+.eco-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media(max-width:540px){ .eco-detail { grid-template-columns: 1fr; } }
+.eco-card {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+}
+.eco-card-title { font-size: 13px; font-weight: 700; color: var(--green); margin-bottom: 8px; }
+.eco-card-title.blue { color: var(--blue); }
+.eco-card-title.gold { color: var(--gold); }
+.eco-item { font-size: 12px; color: var(--text-dim); padding: 4px 0; border-bottom: 1px solid var(--bg3); line-height: 1.55; display: flex; gap: 6px; }
+.eco-item:last-child { border-bottom: none; }
+.eco-item-dot { flex-shrink: 0; color: var(--green); font-size: 10px; margin-top: 3px; }
+.eco-item-dot.blue { color: var(--blue); }
+.eco-item-dot.gold { color: var(--gold); }
+.eco-item strong { color: var(--text); }
+
+.vision-box {
+  background: #0e1a15;
+  border: 1px solid #2a5c45;
+  border-radius: 8px;
+  padding: 18px 20px;
+}
+.vision-title { font-family: var(--serif); font-size: 14px; font-weight: 600; color: var(--green); margin-bottom: 10px; }
+.vision-body { font-size: 13px; color: #5a9a7a; line-height: 1.85; }
+.vision-body strong { color: #8ac8a8; }
+
+/* 푸터 */
+.footer { text-align: center; font-size: 12px; color: var(--text-faint); padding-top: 20px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="header-eyebrow">MyMing · 미래준비 프로젝트</div>
+    <div class="header-title">임진권의 제2인생 로드맵</div>
+    <div class="header-meta">辛金 일간 · 신약 · 己卯 대운(48세~) · 용신 土·金 &nbsp;|&nbsp; 2026년 기준 52세</div>
+    <div class="header-quote">
+      "기득권의 문법으로는 풀리지 않는 문제를, 몸으로 부딪혀 실증하고, 그 지혜를 세상에 돌려주기 위해 태어났다."<br>
+      지금 쌓는 모든 것이 58세 이후 결실의 씨앗이다.
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-title">⏱ 사주 시간표</div>
+      <div class="sec-line"></div>
+      <div class="sec-badge">운의 구조</div>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-age">~47세</div>
+        <div class="tl-name">庚辰 대운</div>
+        <div class="tl-type">겁재 · 정인</div>
+        <div class="tl-desc">경쟁·도전·버팀의 시간. 마케팅연구소 10년이 여기에 있다.</div>
+      </div>
+      <div class="tl-item cur">
+        <div class="tl-age">▶ 48~57세 · 지금</div>
+        <div class="tl-name">己卯 대운</div>
+        <div class="tl-type">편인 · 편재</div>
+        <div class="tl-desc">쌓는 시간. 준비의 마지막 구간. 돈보다 깊이·신뢰·사례가 자산.</div>
+      </div>
+      <div class="tl-item next">
+        <div class="tl-age">58~67세</div>
+        <div class="tl-name">戊寅 대운</div>
+        <div class="tl-type">정인 · 정재</div>
+        <div class="tl-desc">결실·귀인 만남·안정 기반. 지금 쌓은 것이 빛나는 시간.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-age">68~77세</div>
+        <div class="tl-name">丁丑 대운</div>
+        <div class="tl-type">편관 · 편인</div>
+        <div class="tl-desc">사회적 영향력 확대. 己丑 시주와 공명하는 완성기.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-title">🗺 3단계 로드맵</div>
+      <div class="sec-line"></div>
+      <div class="sec-badge">실행 계획</div>
+    </div>
+    <div class="roadmap">
+      <div class="phase p1">
+        <div class="phase-title">1단계 · 기반 구축</div>
+        <div class="phase-period">2026~2027년 (52~53세)</div>
+        <div class="task ok"><span class="task-dot">●</span><span><strong>마이밍 베타 완성</strong> — 조용히 오픈, 피드백 수집</span></div>
+        <div class="task ok"><span class="task-dot">●</span><span><strong>깃허브 강화</strong> — 매일 반복학습·수정보완</span></div>
+        <div class="task ok"><span class="task-dot">●</span><span><strong>유튜브 시작</strong> — 콘텐츠 10개 쌓기 우선</span></div>
+        <div class="task hl"><span class="task-dot">●</span><span><strong>실전 풀이 시작</strong> — 매주 1명, 사례 축적</span></div>
+        <div class="task warn"><span class="task-dot">!</span><span>카페 개설은 유튜브 10개 후에</span></div>
+      </div>
+      <div class="phase p2">
+        <div class="phase-title">2단계 · 통합 & 확장</div>
+        <div class="phase-period">2028~2030년 (54~56세)</div>
+        <div class="task ok"><span class="task-dot">●</span><span><strong>마이밍 정식 오픈</strong> — 유료화 시작</span></div>
+        <div class="task ok"><span class="task-dot">●</span><span><strong>인생재설계 프로그램</strong> — 진단→설계→커뮤니티 흐름 완성</span></div>
+        <div class="task ok"><span class="task-dot">●</span><span><strong>카페 커뮤니티</strong> — 본격 운영</span></div>
+        <div class="task hl"><span class="task-dot">●</span><span><strong>컨설팅·코칭 결합</strong> — 패키지화</span></div>
+        <div class="task warn"><span class="task-dot">!</span><span>동업·공동창업 금지. 계약서 있는 관계만</span></div>
+      </div>
+      <div class="phase p3">
+        <div class="phase-title">3단계 · 결실 & 완성</div>
+        <div class="phase-period">2031년~ (58세~)</div>
+        <div class="task ok"><span class="task-dot">●</span><span><strong>귀인 만남</strong> — 콘텐츠 보고 찾아오는 협력자</span></div>
+        <div class="task ok"><span class="task-dot">●</span><span><strong>마이밍 플랫폼화</strong> — 통합 플랫폼 완성</span></div>
+        <div class="task ok"><span class="task-dot">●</span><span><strong>전문인력 양성</strong> — 코치 양성 프로그램</span></div>
+        <div class="task hl"><span class="task-dot">●</span><span><strong>인본사회 실현</strong> — 사회적 영향력 확장</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-title">🚀 핵심 프로젝트</div>
+      <div class="sec-line"></div>
+      <div class="sec-badge">진행 현황</div>
+    </div>
+    <div class="projects">
+      <div class="proj">
+        <div class="proj-name">🔮 마이밍 (MyMing)</div>
+        <div><span class="proj-tag">자가 사주풀이 서비스</span></div>
+        <div class="proj-desc">시중에 없는 방식의 사주풀이. 사주+별자리 통합 진단으로 정확도 강화. 나의 운명을 스스로 읽는 플랫폼.</div>
+        <span class="status ing">▶ 개발 진행중</span>
+      </div>
+      <div class="proj">
+        <div class="proj-name">📚 사주풀이 학습 시스템</div>
+        <div><span class="proj-tag">깃허브 + 유튜브 + 네이버 카페</span></div>
+        <div class="proj-desc">독학으로 쌓은 명리 지식 체계화. 유튜브 영상 → 카페 커뮤니티로 확장. 학습·검증·신뢰 구축의 3단 구조.</div>
+        <span class="status ing">▶ 진행중</span>
+      </div>
+      <div class="proj">
+        <div class="proj-name">🌱 50대 인생재설계 프로그램</div>
+        <div><span class="proj-tag">AI시대 제2의 인생</span></div>
+        <div class="proj-desc">인생 정리 → 자기 객관화 → 남은 인생 재설계. 마이밍 진단 + 컨설팅 + 커뮤니티 통합 프로그램.</div>
+        <span class="status plan">◎ 기획중</span>
+      </div>
+      <div class="proj">
+        <div class="proj-name">🏛 인본사회 커뮤니티</div>
+        <div><span class="proj-tag">온라인 소통·자기발전 공간</span></div>
+        <div class="proj-desc">더불어 사는 삶의 가치를 실현하는 커뮤니티. 온라인에서 소통·성장·연결. 카페에서 시작.</div>
+        <span class="status wait">◇ 준비중</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 플랫폼 생태계 -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-title">🌐 MyMing 플랫폼 생태계</div>
+      <div class="sec-line"></div>
+      <div class="sec-badge">서비스 구조 전체 흐름</div>
+    </div>
+    <div class="ecosystem">
+
+      <div class="eco-flow">
+        <div class="eco-step">
+          <div class="eco-num">STEP 01</div>
+          <div class="eco-name">🔮 마이밍 진단</div>
+          <div class="eco-desc">사주+별자리 기반 자기객관화. 기본형(약식)과 심화형으로 구분.</div>
+          <span class="eco-tag gold">진단 시스템</span>
+        </div>
+        <div class="eco-step">
+          <div class="eco-num">STEP 02</div>
+          <div class="eco-name">🧭 컨설팅·코칭</div>
+          <div class="eco-desc">통찰력 있는 지도·자문. 언행심리마스터 + 전략기획 전문가 관여. 사람 또는 AI 시스템이 수행.</div>
+          <span class="eco-tag blue">사람 or AI</span>
+        </div>
+        <div class="eco-step">
+          <div class="eco-num">STEP 03</div>
+          <div class="eco-name">🌱 인생재설계</div>
+          <div class="eco-desc">제2인생 설계·실행. 개개인이 만들어내는 도구·서비스가 탄생. 베타테스트 커뮤니티에서 검증.</div>
+          <span class="eco-tag green">커뮤니티 검증</span>
+        </div>
+        <div class="eco-step">
+          <div class="eco-num">STEP 04</div>
+          <div class="eco-name">🏪 플랫폼 확장</div>
+          <div class="eco-desc">검증된 서비스의 정식 오픈·상거래. 재취업·프리랜서·소상공인 연결 생태계.</div>
+          <span class="eco-tag gold">경제 생태계</span>
+        </div>
+      </div>
+
+      <div class="eco-detail">
+        <div class="eco-card">
+          <div class="eco-card-title">🧭 컨설팅·코칭 상세</div>
+          <div class="eco-item"><span class="eco-item-dot">●</span><span><strong>다양한 진단 프로그램</strong> 상황에 맞게 선택 적용</span></div>
+          <div class="eco-item"><span class="eco-item-dot">●</span><span><strong>언행심리마스터</strong> — 언어·행동 패턴 분석·교정</span></div>
+          <div class="eco-item"><span class="eco-item-dot">●</span><span><strong>전략기획 전문가</strong> — 인생·사업 전략 설계</span></div>
+          <div class="eco-item"><span class="eco-item-dot">●</span><span><strong>사람 코치 or AI 시스템</strong> — 비용·상황에 따라 선택</span></div>
+        </div>
+        <div class="eco-card">
+          <div class="eco-card-title blue">🏪 커뮤니티 → 플랫폼 진화</div>
+          <div class="eco-item"><span class="eco-item-dot blue">●</span><span><strong>임시 오픈 커뮤니티</strong>에서 서비스 검증·개선</span></div>
+          <div class="eco-item"><span class="eco-item-dot blue">●</span><span>검증 완료 → <strong>정식 오픈 or 재취업·프리랜서</strong> 연결</span></div>
+          <div class="eco-item"><span class="eco-item-dot blue">●</span><span><strong>소상공인 광고·홍보·마케팅 상품</strong> 거래 플랫폼</span></div>
+          <div class="eco-item"><span class="eco-item-dot blue">●</span><span>개개인의 도구·서비스가 <strong>대국민 서비스</strong>로 확장</span></div>
+        </div>
+      </div>
+
+      <div class="vision-box">
+        <div class="vision-title">✦ 플랫폼이 지향하는 궁극의 그림</div>
+        <div class="vision-body">
+          단순한 사주풀이나 커뮤니티가 아니다. <strong>사주 진단으로 자기객관화가 이루어진 개개인이 새로운 직업과 삶을 만들어가고, 그 과정에서 생겨나는 다양한 도구·서비스들이 커뮤니티 베타테스트를 거쳐 실제 시장으로 나오는</strong> 살아있는 생태계 플랫폼이다.<br><br>
+          한 사람의 변화가 경제적 결과물로 이어지고, 그것이 다시 다른 사람의 변화를 돕는 선순환 구조. <strong>이것이 내가 이 세상에 온 목적—인본사회를 만드는 실질적인 도구—의 완성형이다.</strong>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-title">📌 사주가 말하는 운영 원칙</div>
+      <div class="sec-line"></div>
+      <div class="sec-badge">반드시 지킬 것</div>
+    </div>
+    <div class="principles">
+      <div class="pcard">
+        <div class="pcard-icon">🔓</div>
+        <div class="pcard-title">콘텐츠는 아낌없이 오픈</div>
+        <div class="pcard-body">상관(亥水)이 일지에 있는 사람은 <strong>표현하고 드러내야 에너지가 산다.</strong> 숨기면 막힌다. 단, <strong>유튜브 먼저, 카페는 콘텐츠 10개 후에.</strong></div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-icon">🔒</div>
+        <div class="pcard-title">사람은 천천히 열 것</div>
+        <div class="pcard-body">申亥 해(害)가 있는 사람은 <strong>가까운 관계에서 갈등이 반복된다.</strong> <strong>콘텐츠는 대중에게, 대화는 검증된 소수에게.</strong></div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-icon">📝</div>
+        <div class="pcard-title">동업은 계약서 있는 관계만</div>
+        <div class="pcard-body">감정적으로 친해진 사람과 일을 섞으면 반드시 갈등이 온다. <strong>"계약서 쓸 수 있는 관계인가"</strong>가 협력의 기준.</div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-icon">🎯</div>
+        <div class="pcard-title">하나를 깊게 파는 시간</div>
+        <div class="pcard-body">신약한 辛金이 기회를 다 잡으려 하면 무너진다. <strong>보이는 기회를 다 잡는 게 아니라 마이밍 하나를 깊게 완성하는 시간.</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-title">✨ 귀인에 대하여</div>
+      <div class="sec-line"></div>
+      <div class="sec-badge">58세 戊寅 대운</div>
+    </div>
+    <div class="guiin">
+      <div class="guiin-title">정인(正印) 성격의 귀인 — 찾아가는 게 아니라 찾아오는 사람</div>
+      <div class="guiin-body">
+        동업자나 투자자보다는 <strong>든든한 후원자·조력자·협력자</strong> 성격이다. 이 사람의 콘텐츠와 깊이를 먼저 보고 <strong>찾아오는 사람</strong>이다.<br><br>
+        유튜브·마이밍·카페에 쌓는 콘텐츠가 귀인을 부르는 신호다. <strong>지금 매일 쌓는 것이 58세 이후 귀인이 찾아올 조건을 만든다.</strong><br><br>
+        ※ 申亥 해(害)로 인해 배우자·애인보다 일·사회적 영역에서의 귀인이 더 강하게 작용한다.
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-title">⚠ 반드시 피해야 할 것들</div>
+      <div class="sec-line"></div>
+      <div class="sec-badge">사주 경고</div>
+    </div>
+    <div class="warnings">
+      <div class="wcard red">
+        <div class="wcard-title">🚫 무리한 동시 확장</div>
+        <div class="wcard-body">신약한 辛金이 기회를 다 잡으려 하면 무너진다. 마이밍·유튜브·카페·프로그램을 동시에 전력으로 돌리지 말 것. 순서를 지킬 것.</div>
+      </div>
+      <div class="wcard red">
+        <div class="wcard-title">🚫 감정적 동업·공동창업</div>
+        <div class="wcard-body">申亥 해가 있는 사람은 가까운 관계에서 갈등이 반복된다. 계약서 없는 협력은 반드시 갈등으로 끝난다.</div>
+      </div>
+      <div class="wcard gold">
+        <div class="wcard-title">⚡ 돈을 먼저 쫓지 말 것</div>
+        <div class="wcard-body">지금은 편인 대운으로 버는 시간이 아니라 쌓는 시간이다. 실력과 신뢰를 쌓으면 돈이 따라온다.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="oneline">
+    <div class="oneline-label">✦ 이 사주를 꿰뚫는 한 줄</div>
+    <div class="oneline-text">
+      辛金은 광산 속 보석이다. 세상의 木이 사방을 에워싸고 짓눌러도,<br>
+      己丑이라는 흙은 처음부터 끝까지 그를 품어 만들어왔다.<br>
+      亥水(상관)는 그 날을 갈았고, 申金(겁재)은 뼈대를 세웠다.<br>
+      갈릴수록 빛나고, 눌릴수록 단단해졌다.<br>
+      그리고 말년, 시주 己丑의 편인이 말한다—<br>
+      이제 네가 평생 버티며 쌓아온 그 직관과 통찰, 그것이 바로 너였고.<br>
+      <strong>평생 기득권의 문법과 싸우며 몸으로 실증해온 그 모든 것이,<br>처음부터 세상에 돌려주기 위한 것이었다고.</strong>
+    </div>
+  </div>
+
+  <div class="footer">MyMing 미래준비 프로젝트 &nbsp;·&nbsp; 임진권(52세) &nbsp;·&nbsp; 2026년 작성</div>
+
+</div>
+</body>
+</html>
