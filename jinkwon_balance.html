@@ -41,6 +41,7 @@
     padding: 60px 40px 50px;
     position: relative;
     overflow: hidden;
+    text-align: center;
   }
   .hero::before {
     content: '辛';
@@ -51,6 +52,13 @@
     color: rgba(255,255,255,0.04);
     line-height: 1;
     pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .hero-tag {
     font-size: 11px;
@@ -71,11 +79,13 @@
     font-size: 14px;
     color: rgba(255,255,255,0.55);
     margin-bottom: 32px;
+    max-width: 600px;
   }
   .pillars-row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 12px;
+    width: 100%;
     max-width: 480px;
   }
   .pillar-card {
@@ -427,14 +437,28 @@
     border-top: 1px solid var(--border);
   }
 
+  @media (max-width: 860px) {
+    .product-grid { grid-template-columns: 1fr 1fr; }
+    .pkg-items { grid-template-columns: 1fr 1fr; }
+  }
+
   @media (max-width: 640px) {
-    .pillars-row { grid-template-columns: repeat(4, 1fr); gap: 8px; }
-    .ohaeng-grid { grid-template-columns: repeat(5, 1fr); gap: 8px; }
+    .pillars-row { grid-template-columns: repeat(2, 1fr); gap: 8px; max-width: 280px; }
+    .ohaeng-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .analysis-grid { grid-template-columns: 1fr; }
     .product-grid { grid-template-columns: 1fr; }
     .pkg-items { grid-template-columns: 1fr; }
     .hero { padding: 40px 20px 36px; }
+    .hero-name { font-size: 28px; }
+    .hero-sub { font-size: 12px; }
     .section { padding: 36px 16px; }
+    .timeline-row { grid-template-columns: 80px 1fr; gap: 12px; }
+    .package-box { padding: 24px 18px; }
+  }
+
+  @media (max-width: 420px) {
+    .ohaeng-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-name { font-size: 24px; }
   }
 </style>
 </head>
@@ -442,6 +466,7 @@
 
 <!-- HERO -->
 <div class="hero">
+  <div class="hero-inner">
   <div class="hero-tag">음양오행 사주 분석 리포트</div>
   <div class="hero-name">임 진 권</div>
   <div class="hero-sub">(양) 1975년 09월 02일 01시 30분 · 전통나이 52세 (2026년 기준) · 대운수 8 역행</div>
@@ -466,6 +491,7 @@
       <span class="pillar-gan c-wood">乙</span>
       <span class="pillar-ji c-wood">卯</span>
     </div>
+  </div>
   </div>
 </div>
 
